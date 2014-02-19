@@ -2,9 +2,14 @@ package map;
 
 import java.awt.Color;
 
-public class TerrainImpraticable implements Terrain {
+public class TerrainImpraticable extends Terrain {
 	
-	private static final Color COULEUR = Color.BLACK;
+	public TerrainImpraticable(Color couleur, boolean praticable) {
+        super(couleur, praticable);
+        // TODO Auto-generated constructor stub
+    }
+
+    private static final Color COULEUR = Color.BLACK;
 	private static final boolean PRATICABLE = false;
 	
 	public Color getCouleur() {
