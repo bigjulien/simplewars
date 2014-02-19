@@ -87,5 +87,13 @@ public class Cellule {
 	public void setCoordonnee (Coordonnee coord) {
 		this.coord = coord;
 	}
+
+	
+	/**
+	 * Supprimer l'unite de la cellule
+	 */
+	public void supprimeUnite(){
+	    unit=null;
+	}
 	
 }
