@@ -1,5 +1,8 @@
 package map;
 
+import java.awt.Color;
+
 public interface Terrain {
-	public String getImagePath();
+	public Color getCouleur();
+	public boolean isPraticable();
 }
