@@ -1,10 +1,10 @@
 package unit;
 
-import map.Coordonnee;
+import map.Cellule;
 
 public abstract class Unite {
 	
-	private Coordonnee coord;
+	private Cellule cell;
 	
 	/**
 	 * Recupere le nombre de deplacement possible pour le tour actuel
@@ -13,19 +13,19 @@ public abstract class Unite {
 	public abstract int getNbDeplacement();
 	
 	/**
-	 * Renvoie les coordonnees de l'unite
-	 * @return les coordonnees de l'unite
+	 * Renvoie la cellule de l'unite
+	 * @return les cellule de l'unite
 	 */
-	public Coordonnee getCoordonnee() {
-		return coord;
+	public Cellule getCell() {
+		return cell;
 	}
 	
 	/**
-	 * Change les coordonnees de l'unite
-	 * @param coord les nouvelles coordonnees de l'unite
+	 * Change la cellule de l'unite
+	 * @param cell la nouvelle cellule de l'unite
 	 */
-	public void setCoordonnee (Coordonnee coord) {
-		this.coord = coord;
+	public void setCell (Cellule cell) {
+		this.cell = cell;
 	}
 	
 }
