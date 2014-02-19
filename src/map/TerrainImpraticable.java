@@ -2,7 +2,7 @@ package map;
 
 import java.awt.Color;
 
-public class TerrainImpraticable {
+public class TerrainImpraticable implements Terrain {
 	
 	private static final Color COULEUR = Color.BLACK;
 	private static final boolean PRATICABLE = false;
