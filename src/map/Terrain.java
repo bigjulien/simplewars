@@ -2,7 +2,21 @@ package map;
 
 import java.awt.Color;
 
-public interface Terrain {
-	public Color getCouleur();
-	public boolean isPraticable();
+public class Terrain {
+	
+	private Color couleur;
+	private boolean praticable;
+	
+	public Terrain (Color couleur, boolean praticable) {
+		this.couleur = couleur;
+		this.praticable = praticable;
+	}
+	
+	public Color getCouleur() {
+		return couleur;
+	}
+	
+	public boolean isPraticable() {
+		return praticable;
+	}
 }
