@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
  * @author Benjamin CLAQUIN
  *
  */
-public abstract class Map {
+public class Map {
 
     protected Cellule[][] grille;
     
