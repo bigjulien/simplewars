@@ -29,7 +29,7 @@ public Frame(Map map) {
     this.setLayout(new BorderLayout());
 
     setTitle("Simple Wars 0.1");
-    //setSize(400,400);
+    setSize(800,600);
     setLocationRelativeTo(null);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setResizable(true);
@@ -37,14 +37,14 @@ public Frame(Map map) {
     setBackground(Color.white);
 
     panelCarte = new PanelCarte(map);
-    panelCarte.setPreferredSize(new Dimension(100,100));
+    //panelCarte.setPreferredSize(new Dimension(100,100));
     panelInformations = new PanelInformations();
     panelInformations.setPreferredSize(new Dimension(100,100));
      this.add(panelCarte,BorderLayout.CENTER);
      this.add(panelInformations,BorderLayout.LINE_END);
 
     
-    pack();
+    
     setVisible(true);
 
     
@@ -53,7 +53,7 @@ public Frame(Map map) {
 
 
 public static void main(String[] yolo) {
-    Frame f = new Frame(new Map(15,15));
+    Frame f = new Frame(new Map("Map0"));
 }
 
 }

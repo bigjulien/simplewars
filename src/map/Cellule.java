@@ -96,4 +96,27 @@ public class Cellule {
 	    unit=null;
 	}
 	
+	/**
+	 * @return Si il ya une unite sur cette case
+	 */
+	public boolean contientUnite(){
+	    return unit!=null;
+	}
+	
+	/**
+	 * @return Si il ya un batiment sur cette case
+	 */
+	public boolean contientBatiment(){
+	    return batiment!=null;
+	}
+	
+	/**
+	 * 
+	 * @return Si cette case contient un terrain
+	 */
+	public boolean contientTerrain(){
+	    return terrain!=null;
+	}
 }
+
+

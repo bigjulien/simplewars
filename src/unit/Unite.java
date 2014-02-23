@@ -1,10 +1,16 @@
 package unit;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+
 import map.Cellule;
 
 public abstract class Unite {
 	
 	private Cellule cell;
+	private BufferedImage bufferedImage;
 	
 	/**
 	 * Recupere le nombre de deplacement possible pour le tour actuel
@@ -27,5 +33,20 @@ public abstract class Unite {
 	public void setCell (Cellule cell) {
 		this.cell = cell;
 	}
-	
+
+    public BufferedImage getBufferedImage() {
+        return bufferedImage;
+    }
+
+    public void setBufferedImage(BufferedImage bufferedImage) {
+        this.bufferedImage = bufferedImage;
+    }
+    
+    public void setBufferedImage(String imageLink) {
+        try {
+            bufferedImage = ImageIO.read(new File(imageLink));
+        } catch (Exception e) {
+            System.out.println("Fichier" + imageLink + " manquant ! ");
+        }
+    }	
 }
