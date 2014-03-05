@@ -13,8 +13,8 @@ import map.Coordonnee;
 import map.Map;
 /**
  * Permet de gerer les mecanismes de jeu
- * @author Benjamin CLAQUIN
- *
+ * @author Julien Le Van Suu
+ * 
  */
 public class Controlleur {
 	private Map map;
