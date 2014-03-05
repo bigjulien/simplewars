@@ -16,6 +16,8 @@ public class Map {
     protected Cellule[][] grille;
     
     private int largeur,hauteur;
+    private Coordonnee chateau1, chateau2;
+    
     private String configFile;
     
     
@@ -23,6 +25,10 @@ public class Map {
         this.largeur=largeur;
         this.hauteur=hauteur;
         this.grille= new Cellule[largeur][hauteur];
+    }
+    
+    public Cellule getCellule (Coordonnee c) {
+    	return grille[c.getX()][c.getY()];
     }
     
     
@@ -64,12 +70,14 @@ public class Map {
      */
     public void mapInterpretor (String s){
         
-        String[] tab = s.split(":");
+        String[] tab = s.split(" ");
         if (tab.length==0 || tab.length==1)
             return;
         switch (tab[0]){
             case "largeur":largeur=Integer.parseInt(tab[1]);break;
             case "hauteur":hauteur=Integer.parseInt(tab[1]);break;
+            case "chateau1": chateau1 = new Coordonnee(Integer.parseInt(tab[1]), Integer.parseInt(tab[2])); break;
+            case "chateau2": chateau2 = new Coordonnee(Integer.parseInt(tab[1]), Integer.parseInt(tab[2])); break;
             case "map":
         }
         System.out.println(""+largeur+";"+hauteur);
@@ -78,10 +86,12 @@ public class Map {
     /**
      * Interprete un fichier de configuration pour configurer la map
      * 
-     * Le fichier s'ecrit de la façon suivente
+     * Le fichier s'ecrit de la faï¿½on suivente
      * 
-     * largeur:...
-     * hauteur:...
+     * largeur ...
+     * hauteur ...
+     * chateau1 ...
+     * chateau2 ...
      * 
      * Map
      * 010101011010
@@ -129,6 +139,11 @@ public class Map {
                 strLine =br.readLine();
                 i++;
             }
+            
+            // placement des chateaux
+            getCellule(chateau1).setBatiment(new Chateau());
+            getCellule(chateau2).setBatiment(new Chateau());
+            
             br.close();
         }
         catch(IOException e){
