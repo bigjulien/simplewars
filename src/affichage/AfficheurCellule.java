@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import map.*;
@@ -30,6 +31,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
         catch (NullPointerException e){
             System.err.println("[AfficheurCellule] Vous essayez d'afficher une celule ne contenant pas de coordonees");
         }
+        this.setBorder(BorderFactory.createEmptyBorder(0,10,10,10)); 
     }
     
     /**
@@ -65,7 +67,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
                 BufferedImage bI=u.getBufferedImage();
                 g.drawImage(bI,0, 0, getWidth(), getHeight(),this);
             }catch(Exception e){
-                System.err.println("image unité introuvable");
+                System.err.println("image unitï¿½ introuvable");
             }
         }
     }
