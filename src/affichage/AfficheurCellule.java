@@ -78,7 +78,6 @@ public class AfficheurCellule extends JPanel implements MouseListener{
 
     @Override
     public void mouseEntered(MouseEvent arg0) {
-        System.out.println("Vous avez passe la sourie sur une case");
     }
 
     @Override
