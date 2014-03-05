@@ -31,6 +31,13 @@ public class Map {
     	return grille[c.getX()][c.getY()];
     }
     
+    public Coordonnee getChateau1() {
+    	return chateau1;
+    }
+    
+    public Coordonnee getChateau2() {
+    	return chateau2;
+    }
     
     public Map(String configFile){
         this.configFile=configFile;
@@ -139,10 +146,6 @@ public class Map {
                 strLine =br.readLine();
                 i++;
             }
-            
-            // placement des chateaux
-            getCellule(chateau1).setBatiment(new Chateau());
-            getCellule(chateau2).setBatiment(new Chateau());
             
             br.close();
         }
