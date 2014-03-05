@@ -1,17 +1,15 @@
 package unit;
 
-public class Soldat extends Unite{
-
+public class Piquier extends Unite{
     private static final String imageSoldat = "Units/2673.gif";
+    private static final int NBDEPLACEMENT = 1;
     
-    public Soldat (){
+    public Piquier (){
         setBufferedImage(imageSoldat);
     }
     
-    @Override
     public int getNbDeplacement() {
-        // TODO Auto-generated method stub
-        return 0;
+        return NBDEPLACEMENT;
     }
 
 }
