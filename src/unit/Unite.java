@@ -11,6 +11,7 @@ public abstract class Unite {
 	
 	private Cellule cell;
 	private BufferedImage bufferedImage;
+	private boolean dejaDeplace;
 	
 	/**
 	 * Recupere le nombre de deplacement possible pour le tour actuel
@@ -48,5 +49,13 @@ public abstract class Unite {
         } catch (Exception e) {
             System.out.println("Fichier" + imageLink + " manquant ! ");
         }
+    }
+
+    public boolean isDejaDeplace() {
+        return dejaDeplace;
+    }
+
+    public void setDejaDeplace(boolean dejaDeplace) {
+        this.dejaDeplace = dejaDeplace;
     }	
 }

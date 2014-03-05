@@ -58,7 +58,6 @@ public class AfficheurCellule extends JPanel implements MouseListener{
     public void paintCellule(Graphics g){
         if(cellule.contientTerrain()){
             g.setColor(cellule.getTerrain().getCouleur());
-            System.out.println(cellule.getTerrain().getCouleur());
             g.fillRect(0, 0, getWidth(), getHeight());
         }
         if(cellule.contientUnite()){
@@ -78,7 +77,6 @@ public class AfficheurCellule extends JPanel implements MouseListener{
 
     @Override
     public void mouseEntered(MouseEvent arg0) {
-        System.out.println("Vous avez passe la sourie sur une case");
     }
 
     @Override
