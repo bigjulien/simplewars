@@ -31,15 +31,28 @@ public class AfficheurCellule extends JPanel implements MouseListener{
             System.err.println("[AfficheurCellule] Vous essayez d'afficher une celule ne contenant pas de coordonees");
         }
     }
-
+    
+    /**
+     * Paint la cellule
+     */
     public void paintComponent(Graphics g) {
         
-        g.setColor(color);
-        g.fillRect(0, 0, getWidth(), getHeight());
+       
         paintCellule(g);
             
     }
 
+    /**
+     * Paint successivement les differents composants de la cellule a savoir :
+     * 
+     * le terrain
+     * le batiment
+     * l'unite
+     * 
+     * Si la cellule contient ces dernieres
+     * Envoi un message d'erreur si une image est introuvable
+     * @param g
+     */
     public void paintCellule(Graphics g){
         if(cellule.contientTerrain()){
             g.setColor(cellule.getTerrain().getCouleur());
@@ -63,9 +76,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
 
     @Override
     public void mouseEntered(MouseEvent arg0) {
-        System.out.println("hola fillo hola");
-        color=Color.GREEN;
-        repaint();
+        System.out.println("Vous avez passe la sourie sur une case");
     }
 
     @Override
