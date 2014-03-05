@@ -22,7 +22,7 @@ public class Frame extends JFrame {
 
 private Map map;
 private JPanel panelCarte;
-private JPanel panelInformations;
+private PanelInformations panelInformations;
 
 public Frame(Map map) {
     
@@ -39,7 +39,7 @@ public Frame(Map map) {
     panelCarte = new PanelCarte(map);
     //panelCarte.setPreferredSize(new Dimension(100,100));
     panelInformations = new PanelInformations();
-    panelInformations.setPreferredSize(new Dimension(100,100));
+    panelInformations.setPreferredSize(panelInformations.getDimension());
      this.add(panelCarte,BorderLayout.CENTER);
      this.add(panelInformations,BorderLayout.LINE_END);
 
