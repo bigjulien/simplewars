@@ -25,16 +25,8 @@ public class Chateau implements Batiment {
 	    return joueur;
 	}
 	
-	public void produireArcher() {
-	    cell.setUnit(new Archer());
-	}
-	
-	public void produireChevalier() {
-	    cell.setUnit(new Chevalier());
-	}
-	
-	public void produirePiquier() {
-	    cell.setUnit(new Piquier());
+	public Cellule getCell() {
+	    return cell;
 	}
 
 }

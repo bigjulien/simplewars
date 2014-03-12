@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import joueur.Joueur;
-
+import unit.Archer;
+import unit.Chevalier;
+import unit.Piquier;
 import unit.Unite;
 import gestionnaireInfos.Infos;
 import map.Cellule;
@@ -40,6 +42,22 @@ public class Controlleur {
 		joueurs.get(1).setChateau(c);
 		c = new Chateau(getCellule(map.getChateau2()), joueurs.get(1));
 		joueurs.get(1).setChateau(c);
+	}
+	
+	private void creerUnit(Joueur joueur, Unite unit) {
+	    joueur.getChateau().getCell().setUnit(unit);
+	}
+	
+	public void creerArcher(Joueur joueur) {
+	    creerUnit(joueur, new Archer());
+	}
+	
+	public void creerChevalier(Joueur joueur) {
+	    creerUnit(joueur, new Chevalier());
+	}
+	
+	public void creerPiquier(Joueur joueur) {
+	    creerUnit(joueur, new Piquier());
 	}
 	
 	public void init (String configPath) {
