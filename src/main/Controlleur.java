@@ -36,9 +36,9 @@ public class Controlleur {
 	
 	public void affecterChateaux() {
 		Chateau c;
-		c = new Chateau(joueurs.get(0));
+		c = new Chateau(getCellule(map.getChateau1()), joueurs.get(0));
 		joueurs.get(1).setChateau(c);
-		c = new Chateau(joueurs.get(1));
+		c = new Chateau(getCellule(map.getChateau2()), joueurs.get(1));
 		joueurs.get(1).setChateau(c);
 	}
 	
