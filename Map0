@@ -1,7 +1,6 @@
 largeur 10
 hauteur 10
-chateau1 0 0
-chateau2 9 9
+
 
 Map
 0000000001
@@ -14,3 +13,7 @@ Map
 0000000000
 0000000000
 0000000000
+
+Chateaux
+chateau1 0 0
+chateau2 9 9

@@ -45,16 +45,23 @@ public class Controlleur {
 		// Placer chaque chateau sur la carte et l'affecter a un joueur
 		
 		Chateau c;
-		c = new Chateau(joueurs.get(0));
-		joueurs.get(1).setChateau(c);
-		c = new Chateau(joueurs.get(1));
-		joueurs.get(1).setChateau(c);
+		joueurs.get(1).setChateau(map.getChateau1());
+		joueurs.get(1).setChateau(map.getChateau2());
 	}
 	
 	public void run() {
 		while (run) {
-			
+			phaseCreation();
+			phaseDeplacement();
 		}
+	}
+	
+	public void phaseCreation() {
+		
+	}
+	
+	public void phaseDeplacement() {
+		
 	}
 	
 	public void initMap() {
