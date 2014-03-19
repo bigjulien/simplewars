@@ -3,9 +3,17 @@ package map;
 import unit.Unite;
 
 public class Cellule {
+
+    //coordonee de la cellule sur la grille
 	private Coordonnee coord;
+	
+	// unite eventuellement presente sur la cellule
 	private Unite unit;
+	
+	// terrain sur la cellule
 	private Terrain terrain;
+	
+	// batiment eventuellement present sur la cellule
 	private Batiment batiment;
 	
 	// Constructeurs
@@ -117,6 +125,23 @@ public class Cellule {
 	public boolean contientTerrain(){
 	    return terrain!=null;
 	}
+	
+	/**
+	 *  Affiche une representation en chaine de charactere du contenu d'une cellule
+	 */
+	public String toString(){
+	    String retour="[";
+	       if (contientTerrain())
+	           retour+="batiment   :";
+	       if (contientBatiment())
+	           retour+="batiment   :"+batiment;
+	       if (contientUnite())
+               retour+="batiment   :"+unit;
+	       retour+="]";
+	       return retour;
+	       
+	}
 }
+
 
 
