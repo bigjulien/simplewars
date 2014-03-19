@@ -130,15 +130,15 @@ public class Cellule {
 	 *  Affiche une representation en chaine de charactere du contenu d'une cellule
 	 */
 	public String toString(){
-	    String retour="[";
+	    String retour="[   ";
 	       if (contientTerrain())
-	           retour+="batiment   :";
+	           retour+="terrain   :"+terrain;
 	       if (contientBatiment())
 	           retour+="batiment   :"+batiment;
 	       if (contientUnite())
-               retour+="batiment   :"+unit;
+               retour+="unit   :"+unit;
 	       retour+="]";
-	       return retour;
+	       return retour+="    ]";
 	       
 	}
 }

@@ -16,7 +16,7 @@ public class Map {
     protected Cellule[][] grille;
     
     private int largeur,hauteur;
-    private Coordonnee chateau1, chateau2;
+    private Chateau chateau1, chateau2;
     
     private String configFile;
     
@@ -31,12 +31,20 @@ public class Map {
     	return grille[c.getX()][c.getY()];
     }
     
-    public Coordonnee getChateau1() {
+    public Chateau getChateau1() {
     	return chateau1;
     }
+
+    public Chateau getChateau2() {
+        return chateau1;
+    }
     
-    public Coordonnee getChateau2() {
-    	return chateau2;
+    public Coordonnee getCoordoneeChateau1(){
+        return chateau1.getCell().getCoordonnee();
+    }
+    
+    public Coordonnee getCoordoneeChateau2(){
+        return chateau2.getCell().getCoordonnee();
     }
     
     public Map(String configFile){
@@ -83,8 +91,10 @@ public class Map {
         switch (tab[0]){
             case "largeur":largeur=Integer.parseInt(tab[1]);break;
             case "hauteur":hauteur=Integer.parseInt(tab[1]);break;
-            case "chateau1": chateau1 = new Coordonnee(Integer.parseInt(tab[1]), Integer.parseInt(tab[2])); break;
-            case "chateau2": chateau2 = new Coordonnee(Integer.parseInt(tab[1]), Integer.parseInt(tab[2])); break;
+            case "chateau1": chateau1 = new Chateau(grille[Integer.parseInt(tab[1])][Integer.parseInt(tab[2])]);
+                             grille[Integer.parseInt(tab[1])][Integer.parseInt(tab[2])].setBatiment(chateau1);; break;
+            case "chateau2": chateau2 = new Chateau(grille[Integer.parseInt(tab[1])][Integer.parseInt(tab[2])]);
+                             grille[Integer.parseInt(tab[1])][Integer.parseInt(tab[2])].setBatiment(chateau1);; break;
             case "map":
         }
         System.out.println(""+largeur+";"+hauteur);
@@ -133,7 +143,7 @@ public class Map {
             strLine =br.readLine();
             
             // Dechiffre les lignes suivant la ligne Map 
-            while (strLine != null){
+            while (strLine != null && !strLine.equals("Chateaux")){
                 //tab est un tableau composee des chiffres caracterisant
                 //les elements de la carte
                 tab = strLine.split("");
@@ -146,6 +156,12 @@ public class Map {
                 strLine =br.readLine();
                 i++;
             }
+            
+            while (strLine!=null){
+                // Troisieme phase d'analyse, chateaux et unites                
+                    mapInterpretor(strLine);
+                    strLine =br.readLine();
+                }
             
             br.close();
         }

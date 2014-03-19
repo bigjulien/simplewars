@@ -14,7 +14,7 @@ public abstract class Unite {
 	private BufferedImage bufferedImage;
 	private boolean dejaDeplace;
 
-	private Joueur joueur;
+	protected Joueur joueur;
 	
 	/**
 	 * Recupere le nombre de deplacement possible pour le tour actuel
