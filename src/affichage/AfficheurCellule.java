@@ -1,5 +1,6 @@
 package affichage;
 
+import java.awt.BasicStroke;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -31,7 +32,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
         catch (NullPointerException e){
             System.err.println("[AfficheurCellule] Vous essayez d'afficher une celule ne contenant pas de coordonees");
         }
-        this.setBorder(BorderFactory.createEmptyBorder(0,10,10,10)); 
+        
     }
     
     /**
@@ -39,7 +40,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
      */
     public void paintComponent(Graphics g) {
         
-       
+        
         paintCellule(g);
             
     }
@@ -59,6 +60,9 @@ public class AfficheurCellule extends JPanel implements MouseListener{
         if(cellule.contientTerrain()){
             g.setColor(cellule.getTerrain().getCouleur());
             g.fillRect(0, 0, getWidth(), getHeight());
+           setBorder(BorderFactory.createLineBorder(Color.black,4));
+           
+            
         }
         if(cellule.contientUnite()){
             Unite u = cellule.getUnit();
@@ -71,9 +75,10 @@ public class AfficheurCellule extends JPanel implements MouseListener{
         }
     }
     
-    @Override
+    
     public void mouseClicked(MouseEvent arg0) {
         System.out.println(coordonee);
+
     }
 
     @Override

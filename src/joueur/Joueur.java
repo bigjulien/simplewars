@@ -6,6 +6,9 @@ public class Joueur {
 	private String nom;
 	private Chateau chateau;
 	
+	// Donne le sens du joueur, pour que ses images soit tournees vers l'ennemi
+	private boolean gauche;
+	
 	public Joueur (String nom) {
 		this.nom = nom;
 	}
