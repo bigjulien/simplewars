@@ -24,5 +24,13 @@ public class Joueur {
 	public void setChateau (Chateau chateau) {
 		this.chateau = chateau;
 	}
+
+    public boolean isGauche() {
+        return gauche;
+    }
+
+    public void setGauche(boolean gauche) {
+        this.gauche = gauche;
+    }
 	
 }
