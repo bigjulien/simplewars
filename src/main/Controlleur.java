@@ -15,9 +15,7 @@ import unit.Piquier;
 import unit.Unite;
 import gestionnaireInfos.Infos;
 import map.Cellule;
-import map.Chateau;
 import map.Coordonnee;
-import map.Map;
 
 /**
  * Permet de gerer les mecanismes de jeu
@@ -26,10 +24,15 @@ import map.Map;
  */
 public class Controlleur {
 	private Map map;
+	
+	private boolean run;
+	
 	public static Infos infos = new Infos() ;
 	List<Joueur> joueurs;
 	
-	public Controlleur() {
+	private static final String CONFIGPATH = "Map0";
+	
+	public void initJoueurs() {
 		joueurs = new ArrayList<>();
 		
 		// Deux joueur dans cette version du jeu
@@ -38,16 +41,42 @@ public class Controlleur {
 		joueurs.add(new Joueur ("Joueur 2"));
 	}
 	
-	public void lireCarte(String configPath) {
-		map = new Map(configPath);
-	}
-	
-	public void affecterChateaux() {
+	public void initChateaux() {
+		// Placer chaque chateau sur la carte et l'affecter a un joueur
+		
 		Chateau c;
 		c = new Chateau(joueurs.get(0));
 		joueurs.get(1).setChateau(c);
 		c = new Chateau(joueurs.get(1));
 		joueurs.get(1).setChateau(c);
+	}
+	
+	public void run() {
+		while (run) {
+			phaseCreation();
+			phaseDeplacement();
+		}
+	}
+	
+	public void phaseCreation() {
+		
+	}
+	
+	public void phaseDeplacement() {
+		
+	}
+	
+	public void initMap() {
+		map = new Map(CONFIGPATH);
+	}
+	
+	public Controlleur() {
+		initJoueurs();
+		initMap();
+		initChateaux();
+		
+		// Ready to play
+		this.run = true;
 	}
 	
 	private void creerUnit(Joueur joueur, Unite unit) {
@@ -64,11 +93,6 @@ public class Controlleur {
 	
 	public void creerPiquier(Joueur joueur) {
 	    creerUnit(joueur, new Piquier());
-	}
-	
-	public void init (String configPath) {
-		lireCarte(configPath);
-		affecterChateaux();
 	}
 
 	public void changerDePlaceUnite(Coordonnee a, Coordonnee b)
@@ -135,6 +159,10 @@ public class Controlleur {
 	private void attack(Cellule cdep,Cellule carr)
 	{
 		//if(cdep )
+	}
+	
+	public static void main (String args[]) {
+		Controlleur c = new Controlleur();
 	}
 
 }

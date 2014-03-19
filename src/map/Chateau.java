@@ -1,8 +1,5 @@
 package map;
 
-import unit.Archer;
-import unit.Chevalier;
-import unit.Piquier;
 import joueur.Joueur;
 
 public class Chateau implements Batiment {
