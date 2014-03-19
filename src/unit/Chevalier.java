@@ -4,8 +4,8 @@ import joueur.Joueur;
 
 public class Chevalier extends Unite {
 
-    private static final String imageSoldatGauche = "unit_arch - Copie.png";
-    private static final String imageSoldatDroite = "unit_arch.png";
+    private static final String imageSoldatGauche = "Units/unit_arch - Copie.png";
+    private static final String imageSoldatDroite = "Units/unit_arch.png";
     
     private static final int NBDEPLACEMENT = 2;
     

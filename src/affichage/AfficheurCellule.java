@@ -68,9 +68,10 @@ public class AfficheurCellule extends JPanel implements MouseListener{
             Unite u = cellule.getUnit();
             try {
                 BufferedImage bI=u.getBufferedImage();
+                System.out.println(u.getBufferedImage());
                 g.drawImage(bI,0, 0, getWidth(), getHeight(),this);
             }catch(Exception e){
-                System.err.println("image unit� introuvable");
+                System.err.println("image unite introuvable");
             }
         }
     }
