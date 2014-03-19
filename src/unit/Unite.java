@@ -5,6 +5,7 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
+import joueur.Joueur;
 import map.Cellule;
 
 public abstract class Unite {
@@ -12,6 +13,8 @@ public abstract class Unite {
 	private Cellule cell;
 	private BufferedImage bufferedImage;
 	private boolean dejaDeplace;
+
+	private Joueur joueur;
 	
 	/**
 	 * Recupere le nombre de deplacement possible pour le tour actuel
@@ -57,5 +60,13 @@ public abstract class Unite {
 
     public void setDejaDeplace(boolean dejaDeplace) {
         this.dejaDeplace = dejaDeplace;
+    }
+
+    public Joueur getJoueur() {
+        return joueur;
+    }
+
+    public void setJoueur(Joueur joueur) {
+        this.joueur = joueur;
     }	
 }
