@@ -53,8 +53,17 @@ public class Controlleur {
 	
 	public void run() {
 		while (run) {
-			
+			phaseCreation();
+			phaseDeplacement();
 		}
+	}
+	
+	public void phaseCreation() {
+		
+	}
+	
+	public void phaseDeplacement() {
+		
 	}
 	
 	public void initMap() {
