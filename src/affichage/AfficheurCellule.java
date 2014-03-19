@@ -71,9 +71,10 @@ public class AfficheurCellule extends JPanel implements MouseListener{
         }
     }
     
-    @Override
+    
     public void mouseClicked(MouseEvent arg0) {
-        System.out.println(coordonee+"  "+cellule);
+        System.out.println(coordonee);
+
     }
 
     @Override
