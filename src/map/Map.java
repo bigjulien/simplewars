@@ -5,6 +5,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import joueur.Joueur;
+import unit.Archer;
+
 
 /**
  * Gere les informations de la carte
@@ -95,7 +98,9 @@ public class Map {
                              grille[Integer.parseInt(tab[1])][Integer.parseInt(tab[2])].setBatiment(chateau1);; break;
             case "chateau2": chateau2 = new Chateau(grille[Integer.parseInt(tab[1])][Integer.parseInt(tab[2])]);
                              grille[Integer.parseInt(tab[1])][Integer.parseInt(tab[2])].setBatiment(chateau1);; break;
-            case "map":
+            case "Archer":  Archer archer = new Archer(new Joueur("joueur",true));
+                            archer.setJoueur(new Joueur("babar"));
+                            grille[Integer.parseInt(tab[1])][Integer.parseInt(tab[2])].setUnit(archer);; break;
         }
         System.out.println(""+largeur+";"+hauteur);
     }

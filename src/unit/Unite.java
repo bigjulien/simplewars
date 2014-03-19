@@ -16,6 +16,11 @@ public abstract class Unite {
 
 	protected Joueur joueur;
 	
+	
+	public Unite (){
+	    
+	}
+	
 	/**
 	 * Recupere le nombre de deplacement possible pour le tour actuel
 	 * @return le nombre de deplacement

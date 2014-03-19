@@ -205,15 +205,15 @@ public class Controlleur {
 	}
 	
 	public void creerArcher(Joueur joueur) {
-	    creerUnit(joueur, new Archer());
+	    creerUnit(joueur, new Archer(joueur));
 	}
 	
 	public void creerChevalier(Joueur joueur) {
-	    creerUnit(joueur, new Chevalier());
+	    creerUnit(joueur, new Chevalier(joueur));
 	}
 	
 	public void creerPiquier(Joueur joueur) {
-	    creerUnit(joueur, new Piquier());
+	    creerUnit(joueur, new Piquier(joueur));
 	}
 
 	
