@@ -13,6 +13,7 @@ public abstract class Unite {
 	private Cellule cell;
 	private BufferedImage bufferedImage;
 	private boolean dejaDeplace;
+
 	private Joueur joueur;
 	
 	/**

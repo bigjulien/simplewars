@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import joueur.Joueur;
+
+import map.Chateau;
+import map.Map;
+
+
 import unit.Archer;
 import unit.Chevalier;
 import unit.Piquier;
@@ -13,6 +18,7 @@ import map.Cellule;
 import map.Chateau;
 import map.Coordonnee;
 import map.Map;
+
 /**
  * Permet de gerer les mecanismes de jeu
  * @author Julien Le Van Suu
@@ -38,9 +44,9 @@ public class Controlleur {
 	
 	public void affecterChateaux() {
 		Chateau c;
-		c = new Chateau(getCellule(map.getChateau1()), joueurs.get(0));
+		c = new Chateau(joueurs.get(0));
 		joueurs.get(1).setChateau(c);
-		c = new Chateau(getCellule(map.getChateau2()), joueurs.get(1));
+		c = new Chateau(joueurs.get(1));
 		joueurs.get(1).setChateau(c);
 	}
 	

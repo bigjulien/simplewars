@@ -11,6 +11,11 @@ public class Chateau implements Batiment {
 	
 	private Joueur joueur;
 	private Cellule cell;
+
+	
+	public Chateau (Joueur j) {
+		this.joueur = j;
+	}
 	
 	public Chateau (Cellule cell, Joueur j) {
 		this.joueur = j;
