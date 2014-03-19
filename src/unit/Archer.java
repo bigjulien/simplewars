@@ -1,5 +1,7 @@
 package unit;
 
+import joueur.Joueur;
+
 public class Archer extends Unite {
     
 
@@ -8,7 +10,8 @@ public class Archer extends Unite {
     
     private static final int NBDEPLACEMENT = 1;
         
-    public Archer(){
+    public Archer(Joueur joueur){
+        this.joueur=joueur;
         if (joueur.isGauche())
             setBufferedImage(imageSoldatDroite);
         if (joueur.isGauche())

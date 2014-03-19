@@ -1,5 +1,7 @@
 package unit;
 
+import joueur.Joueur;
+
 public class Piquier extends Unite{
    
     private static final String imageSoldatGauche = "unit_piq - Copie.png";
@@ -7,7 +9,8 @@ public class Piquier extends Unite{
 
     private static final int NBDEPLACEMENT = 1;
     
-    public Piquier (){
+    public Piquier (Joueur joueur){
+        this.joueur=joueur;
         if (joueur.isGauche())
             setBufferedImage(imageSoldatDroite);
         if (joueur.isGauche())

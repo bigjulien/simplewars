@@ -1,5 +1,7 @@
 package unit;
 
+import joueur.Joueur;
+
 public class Chevalier extends Unite {
 
     private static final String imageSoldatGauche = "unit_arch - Copie.png";
@@ -7,7 +9,8 @@ public class Chevalier extends Unite {
     
     private static final int NBDEPLACEMENT = 2;
     
-    public Chevalier (){
+    public Chevalier (Joueur joueur){
+        this.joueur=joueur;
         if (joueur.isGauche())
             setBufferedImage(imageSoldatDroite);
         if (joueur.isGauche())

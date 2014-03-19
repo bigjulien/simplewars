@@ -13,6 +13,11 @@ public class Joueur {
 		this.nom = nom;
 	}
 	
+	   public Joueur (String nom,boolean gauche) {
+	        this.nom = nom;
+	        this.gauche=gauche;
+	    }
+	
 	public String getNom() {
 		return nom;
 	}
