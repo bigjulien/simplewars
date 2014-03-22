@@ -11,7 +11,7 @@ public class Chevalier extends Unite {
     
     public Chevalier (Joueur joueur){
         this.joueur=joueur;
-        if (joueur.isGauche())
+        if (!joueur.isGauche())
             setBufferedImage(imageSoldatDroite);
         if (joueur.isGauche())
             setBufferedImage(imageSoldatGauche);

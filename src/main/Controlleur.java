@@ -56,9 +56,12 @@ public class Controlleur {
 		joueurs = new ArrayList<>();
 		
 		// Deux joueur dans cette version du jeu
-		
-		joueurs.add(new Joueur ("Joueur 1"));
-		joueurs.add(new Joueur ("Joueur 2"));
+		Joueur j1 = new Joueur ("Joueur 1");
+		Joueur j2 = new Joueur ("Joueur 2");
+		j1.setGauche(false);
+		j2.setGauche(true);
+		joueurs.add(j1);
+		joueurs.add(j2);
 	}
 	
 	public void initChateaux() {

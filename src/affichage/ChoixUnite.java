@@ -52,12 +52,6 @@ public class ChoixUnite extends JFrame implements ActionListener{
 	}
 	
 	
-	
-	public static void main(String[] yolo) {
-		Controlleur c= new Controlleur();
-	    ChoixUnite f = new ChoixUnite(c);
-	}
-	
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
