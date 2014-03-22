@@ -22,7 +22,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
     private Color color=Color.BLACK;
     private Coordonnee coordonee;
     private Cellule cellule;
-   
+   private final int BORDERBOLD =4;
     public AfficheurCellule(Cellule cellule) {
         this.addMouseListener(this);
         this.cellule=cellule;
@@ -60,7 +60,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
         if(cellule.contientTerrain()){
             g.setColor(cellule.getTerrain().getCouleur());
             g.fillRect(0, 0, getWidth(), getHeight());
-           setBorder(BorderFactory.createLineBorder(Color.black,4));
+           setBorder(BorderFactory.createLineBorder(Color.black,BORDERBOLD));
            
             
         }
