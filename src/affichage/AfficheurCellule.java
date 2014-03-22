@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import main.Controlleur;
 import map.*;
 import unit.*;
 /**
@@ -22,7 +23,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
     private Color color=Color.BLACK;
     private Coordonnee coordonee;
     private Cellule cellule;
-
+    Controlleur c;
 
 
    private final int BORDERBOLD =4;
@@ -96,7 +97,14 @@ public class AfficheurCellule extends JPanel implements MouseListener{
     
     
     public void mouseClicked(MouseEvent arg0) {
-        System.out.println(cellule);
+        if(cellule.contientBatiment())
+        {
+        	c.creation();
+        }
+        else
+        {
+        	c.deplacement(c.getJoueurCourrant());
+        }
 
     }
 
@@ -118,6 +126,11 @@ public class AfficheurCellule extends JPanel implements MouseListener{
     public void mouseReleased(MouseEvent arg0) {
         // TODO Auto-generated method stub
         
+    }
+    
+    public void setControl(Controlleur c)
+    {
+    	this.c  =c;
     }
 
 }

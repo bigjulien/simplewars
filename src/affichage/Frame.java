@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import main.Controlleur;
 import map.Map;
 
 /**
@@ -24,7 +25,7 @@ private Map map;
 private JPanel panelCarte;
 private PanelInformations panelInformations;
 
-public Frame(Map map) {
+public Frame(Map map, Controlleur c) {
     
     this.setLayout(new BorderLayout());
 
@@ -36,7 +37,7 @@ public Frame(Map map) {
     setUndecorated(false);
     setBackground(Color.white);
 
-    panelCarte = new PanelCarte(map);
+    panelCarte = new PanelCarte(map,c);
     //panelCarte.setPreferredSize(new Dimension(100,100));
     panelInformations = new PanelInformations();
     panelInformations.setPreferredSize(panelInformations.getDimension());

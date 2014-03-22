@@ -34,6 +34,8 @@ public class Controlleur {
 	
 	public static Infos infos = new Infos() ;
 	List<Joueur> joueurs;
+	Joueur j1 = new Joueur ("Joueur 1");
+	Joueur j2 = new Joueur ("Joueur 2");
 	private Joueur joueurCourrant;
 	
 	private static final String CONFIGPATH = "Map0";
@@ -46,7 +48,7 @@ public class Controlleur {
 		initJoueurs();
 		initMap();
 		initChateaux();
-		f = new Frame(map);
+		f = new Frame(map,this);
 		// Ready to play
 		this.rand = new Random();
 		this.run = true;
@@ -56,19 +58,22 @@ public class Controlleur {
 		joueurs = new ArrayList<>();
 		
 		// Deux joueur dans cette version du jeu
-		Joueur j1 = new Joueur ("Joueur 1");
-		Joueur j2 = new Joueur ("Joueur 2");
+		
 		j1.setGauche(false);
 		j2.setGauche(true);
 		joueurs.add(j1);
 		joueurs.add(j2);
+		
 	}
 	
 	public void initChateaux() {
 		// Placer chaque chateau sur la carte et l'affecter a un joueur
-		
-		joueurs.get(1).setChateau(map.getChateau1());
-		joueurs.get(1).setChateau(map.getChateau2());
+		Chateau a = map.getChateau1();
+		Chateau b = map.getChateau2();
+		a.setJoueur(j1);
+		b.setJoueur(j2);
+		joueurs.get(1).setChateau(a);
+		joueurs.get(1).setChateau(b);
 		
 	}
 	

@@ -58,7 +58,11 @@ public class Chateau extends Batiment {
             System.out.println("Fichier" + imageLink + " manquant ! ");
         }
     }
-
+	
+	public void setJoueur(Joueur j)
+	{
+		this.joueur = j;
+	}
 
     public BufferedImage getBufferedImage() {
         return bufferedImage;
