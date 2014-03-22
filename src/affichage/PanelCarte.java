@@ -28,12 +28,9 @@ public class PanelCarte extends JPanel {
             for (int j = 0; j <largeur ; j++){
                 AfficheurCellule aC = new AfficheurCellule(map.getGrille()[i][j]);
                 aC.setControl(c);
+           
                 add(aC);
             }
-        }
-        
-        
-        
-    }
-    
+        }       
+    }    
 }

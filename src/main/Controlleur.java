@@ -31,17 +31,18 @@ public class Controlleur {
 	private Random rand;
 	Frame f;
 	private boolean run;
-	
+	public boolean nbClick =false;
+	public Coordonnee memoire ;
 	public static Infos infos = new Infos() ;
 	List<Joueur> joueurs;
 	Joueur j1 = new Joueur ("Joueur 1");
 	Joueur j2 = new Joueur ("Joueur 2");
-	private Joueur joueurCourrant;
+	private Joueur joueurCourant=j1;
 	
 	private static final String CONFIGPATH = "Map0";
 		
-	public Joueur getJoueurCourrant() {
-		return joueurCourrant;
+	public Joueur getJoueurCourant() {
+		return joueurCourant;
 	}
 	
 	public Controlleur() {
@@ -72,21 +73,24 @@ public class Controlleur {
 		Chateau b = map.getChateau2();
 		a.setJoueur(j1);
 		b.setJoueur(j2);
+		j1.setChateau(a);
+		j2.setChateau(b);
 		joueurs.get(1).setChateau(a);
 		joueurs.get(1).setChateau(b);
+		
 		
 	}
 	
 	public void run() {
 		while (run) {
 			phaseCreation();
-			phaseDeplacement();
+			
 		}
 	}
 	
 	public void phaseCreation() {
 		for (Joueur j : joueurs) {
-			joueurCourrant = j;
+			joueurCourant = j;
 			creation();
 		}
 	}
@@ -96,15 +100,9 @@ public class Controlleur {
 		
 	}
 	
-	public void phaseDeplacement() {
-		for (Joueur j : joueurs) {
-			joueurCourrant = j;
-			deplacement(j);
-		}
-	}
 	
-	public void deplacement (Joueur j) {
-		
+	public void prepareDeplacement (Joueur j, Coordonnee c) {
+		memoire = c;
 	}
 	
 	public boolean deplacer (Joueur j, Coordonnee org, Coordonnee dst) {
@@ -215,19 +213,19 @@ public class Controlleur {
 	
 	
 	private void creerUnit(Joueur joueur, Unite unit) {
-	    joueur.getChateau().getCell().setUnit(unit);
+	    map.getVoisinLibre(joueur.getChateau().getCell()).setUnit(unit);
 	}
 	
 	public void creerArcher(Joueur joueur) {
-	    creerUnit(joueur, new Archer(joueur));
+	    creerUnit(joueurCourant, new Archer(joueurCourant));
 	}
 	
 	public void creerChevalier(Joueur joueur) {
-	    creerUnit(joueur, new Chevalier(joueur));
+	    creerUnit(joueurCourant, new Chevalier(joueurCourant));
 	}
 	
 	public void creerPiquier(Joueur joueur) {
-	    creerUnit(joueur, new Piquier(joueur));
+	    creerUnit(joueur, new Piquier(joueurCourant));
 	}
 
 	

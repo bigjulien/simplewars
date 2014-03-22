@@ -39,6 +39,8 @@ public class Chateau extends Batiment {
 	    return cell;
 	}
 	
+	
+	
 	public String toString(){
 	    if (cell!=null && joueur!=null)
 	        return " (Chateau du joueur "+joueur+" "+cell+" "+") ";

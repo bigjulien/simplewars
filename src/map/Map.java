@@ -191,4 +191,17 @@ public class Map {
         }
     }
 
+	public Cellule getVoisinLibre(Cellule cell) {
+		Coordonnee coord =cell.getCoordonnee();
+		if(grille[coord.getX()+1][coord.getY()].estVideetPrat() )
+		{
+			return grille[coord.getX()+1][coord.getY()];
+		}
+		else if(grille[coord.getX()][coord.getY()+1].estVideetPrat())
+		{
+			return grille[coord.getX()][coord.getY()+1];
+		}
+		return null;
+	}
+
 }

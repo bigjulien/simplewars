@@ -125,11 +125,18 @@ public class Cellule {
 	public boolean contientTerrain(){
 	    return terrain!=null;
 	}
-	
+	public boolean estVideetPrat()
+	{
+		if(!contientUnite() && !contientBatiment() && terrain.isPraticable())
+		{
+			return true;
+		}
+		return false;
+	}
 	/**
 	 *  Affiche une representation en chaine de charactere du contenu d'une cellule
 	 */
-	public String toString(){
+	/*public String toString(){
 	    String retour="[   ";
 	       if (contientTerrain())
 	           retour+="terrain   :"+terrain;
@@ -140,7 +147,7 @@ public class Cellule {
 	       retour+="]";
 	       return retour+="    ]";
 	       
-	}
+	}*/
 }
 
 

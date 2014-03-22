@@ -7,16 +7,16 @@ public class Joueur {
 	private Chateau chateau;
 	
 	// Donne le sens du joueur, pour que ses images soit tournees vers l'ennemi
-	private boolean gauche;
+	private boolean gauche=true;
 	
 	public Joueur (String nom) {
 		this.nom = nom;
 	}
 	
-	   public Joueur (String nom,boolean gauche) {
-	        this.nom = nom;
-	        this.gauche=gauche;
-	    }
+	public Joueur (String nom,boolean gauche) {
+	    this.nom = nom;
+	    this.gauche=gauche;
+	}
 	
 	public String getNom() {
 		return nom;
