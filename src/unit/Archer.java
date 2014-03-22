@@ -27,7 +27,7 @@ public class Archer extends Unite {
         return "archer du joueur "+joueur;
         }
         catch (NullPointerException e) {
-            System.err.println("lél, un archer n'a pas de joueur");
+            System.err.println("lel, un archer n'a pas de joueur");
         }
         return "error";
     }
