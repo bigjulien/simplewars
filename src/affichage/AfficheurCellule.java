@@ -74,7 +74,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
             try {
                 BufferedImage bI=u.getBufferedImage();
                 System.out.println(u.getBufferedImage());
-                g.drawImage(bI,2*BORDERBOLD, 2*BORDERBOLD, getWidth()-2*BORDERBOLD, getHeight()-2*BORDERBOLD,this);
+                g.drawImage(bI,2*BORDERBOLD, 2*BORDERBOLD, getWidth()-4*BORDERBOLD, getHeight()-4*BORDERBOLD,this);
             }catch(Exception e){
                 System.err.println("image batiment introuvable");
             }
@@ -85,7 +85,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
             try {
                 BufferedImage bI=u.getBufferedImage();
                 System.out.println(u.getBufferedImage());
-                g.drawImage(bI,2*BORDERBOLD,2*BORDERBOLD, getWidth()-2*BORDERBOLD, getHeight()-2*BORDERBOLD,this);
+                g.drawImage(bI,2*BORDERBOLD,2*BORDERBOLD, getWidth()-4*BORDERBOLD, getHeight()-4*BORDERBOLD,this);
             }catch(Exception e){
                 System.err.println("image unite introuvable");
             }
