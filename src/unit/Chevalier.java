@@ -20,5 +20,15 @@ public class Chevalier extends Unite {
     public int getNbDeplacement() {
         return NBDEPLACEMENT;
     }
+    
+    public String toString(){
+        try {
+        return "chevalier du joueur "+joueur;
+        }
+        catch (NullPointerException e) {
+            System.err.println("lel, un chevalier n'a pas de joueur");
+        }
+        return "error";
+    }
 
 }

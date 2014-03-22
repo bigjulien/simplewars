@@ -21,4 +21,13 @@ public class Piquier extends Unite{
         return NBDEPLACEMENT;
     }
 
+    public String toString(){
+        try {
+        return "Piquer du joueur "+joueur;
+        }
+        catch (NullPointerException e) {
+            System.err.println("lel, un piquier n'a pas de joueur");
+        }
+        return "error";
+    }
 }
