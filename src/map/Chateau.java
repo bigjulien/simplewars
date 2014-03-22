@@ -9,7 +9,7 @@ import joueur.Joueur;
 
 public class Chateau extends Batiment {
 
-	private static String IMAGEPATH = "Units/unit_arch.png";
+	private static String IMAGEPATH = "Units/chateau.png";
 
 
 	public Chateau (Cellule cell) {

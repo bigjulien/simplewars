@@ -22,7 +22,11 @@ public class AfficheurCellule extends JPanel implements MouseListener{
     private Color color=Color.BLACK;
     private Coordonnee coordonee;
     private Cellule cellule;
-    public static final int bordureCellule = 4;
+
+
+
+   private final int BORDERBOLD =4;
+
     public AfficheurCellule(Cellule cellule) {
         this.addMouseListener(this);
         this.cellule=cellule;
@@ -60,7 +64,8 @@ public class AfficheurCellule extends JPanel implements MouseListener{
         if(cellule.contientTerrain()){
             g.setColor(cellule.getTerrain().getCouleur());
             g.fillRect(0, 0, getWidth(), getHeight());
-           setBorder(BorderFactory.createLineBorder(Color.black,bordureCellule));
+           setBorder(BorderFactory.createLineBorder(Color.black,BORDERBOLD));
+
            
             
         }
@@ -69,7 +74,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
             try {
                 BufferedImage bI=u.getBufferedImage();
                 System.out.println(u.getBufferedImage());
-                g.drawImage(bI,bordureCellule, bordureCellule, getWidth()-bordureCellule, getHeight()-bordureCellule,this);
+                g.drawImage(bI,BORDERBOLD, BORDERBOLD, getWidth()-BORDERBOLD, getHeight()-BORDERBOLD,this);
             }catch(Exception e){
                 System.err.println("image batiment introuvable");
             }
@@ -80,7 +85,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
             try {
                 BufferedImage bI=u.getBufferedImage();
                 System.out.println(u.getBufferedImage());
-                g.drawImage(bI,bordureCellule,bordureCellule, getWidth()-bordureCellule, getHeight()-bordureCellule,this);
+                g.drawImage(bI,BORDERBOLD,BORDERBOLD, getWidth()-BORDERBOLD, getHeight()-BORDERBOLD,this);
             }catch(Exception e){
                 System.err.println("image unite introuvable");
             }
