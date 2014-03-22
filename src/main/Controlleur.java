@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import affichage.Frame;
+
 import joueur.Joueur;
 
 import map.Chateau;
@@ -26,7 +28,7 @@ import map.Coordonnee;
 public class Controlleur {
 	private Map map;
 	private Random rand;
-	
+	Frame f;
 	private boolean run;
 	
 	public static Infos infos = new Infos() ;
@@ -34,9 +36,19 @@ public class Controlleur {
 	private Joueur joueurCourrant;
 	
 	private static final String CONFIGPATH = "Map0";
-	
+		
 	public Joueur getJoueurCourrant() {
 		return joueurCourrant;
+	}
+	
+	public Controlleur() {
+		initJoueurs();
+		initMap();
+		initChateaux();
+		f = new Frame(map);
+		// Ready to play
+		this.rand = new Random();
+		this.run = true;
 	}
 	
 	public void initJoueurs() {
@@ -54,6 +66,7 @@ public class Controlleur {
 		Chateau c;
 		joueurs.get(1).setChateau(map.getChateau1());
 		joueurs.get(1).setChateau(map.getChateau2());
+		
 	}
 	
 	public void run() {
@@ -190,15 +203,7 @@ public class Controlleur {
 		map = new Map(CONFIGPATH);
 	}
 	
-	public Controlleur() {
-		initJoueurs();
-		initMap();
-		initChateaux();
-		
-		// Ready to play
-		this.rand = new Random();
-		this.run = true;
-	}
+	
 	
 	private void creerUnit(Joueur joueur, Unite unit) {
 	    joueur.getChateau().getCell().setUnit(unit);
@@ -229,10 +234,6 @@ public class Controlleur {
 	{
 		Cellule[][] g = map.getGrille();
 		return g[a.getX()][a.getY()];
-	}
-	
-	public static void main (String args[]) {
-		Controlleur c = new Controlleur();
 	}
 
 }

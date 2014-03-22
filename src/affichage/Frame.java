@@ -48,12 +48,5 @@ public Frame(Map map) {
     setVisible(true);
 
     
-}
-
-
-
-public static void main(String[] yolo) {
-    Frame f = new Frame(new Map("Map0"));
-}
-
+	}
 }

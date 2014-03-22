@@ -4,7 +4,7 @@ import joueur.Joueur;
 
 public class Chateau implements Batiment {
 
-	private static String IMAGEPATH = "img/chateau.png";
+	private static String IMAGEPATH = "Units/unit_arch.png";
 	
 	private Joueur joueur;
 	private Cellule cell;
@@ -39,9 +39,9 @@ public class Chateau implements Batiment {
 	    if (cell!=null && joueur!=null)
 	        return " (Chateau du joueur "+joueur+" "+cell+" "+") ";
 	    else if (joueur==null)
-	        System.err.println("lél, ce chateau n'a pas de joueur");
+	        System.err.println("lï¿½l, ce chateau n'a pas de joueur");
 	    else if (cell==null)
-	        System.err.println("lél, ce chateau n'a pas de cellule");
+	        System.err.println("lï¿½l, ce chateau n'a pas de cellule");
 	    return "chateau n'ayant pas de joueur ou de cellule";
 	    
 	}
