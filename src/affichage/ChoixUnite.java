@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -15,7 +17,7 @@ import javax.swing.JPanel;
 import main.Controlleur;
 import map.Map;
 
-public class ChoixUnite extends JFrame{
+public class ChoixUnite extends JFrame implements ActionListener{
 	/**
 	 * 
 	 */
@@ -26,7 +28,7 @@ public class ChoixUnite extends JFrame{
 	JButton m = new JButton("Archer");
 	JButton s = new JButton("Piquier");
 	JLabel l = new JLabel("Que veux tu créer ?");
-	ChoixUnite(Controlleur c)
+	public ChoixUnite(Controlleur c)
 	{
 	    this.setTitle("Choix d'unité");
 	    this.setSize(700, 700);
@@ -37,9 +39,9 @@ public class ChoixUnite extends JFrame{
 	    m.setFont(new Font(Font.DIALOG, Font.BOLD, 80));
 	    s.setFont(new Font(Font.DIALOG, Font.BOLD, 80));
 	    l.setFont(new Font(Font.DIALOG, Font.BOLD, 63));
-	    n.addMouseListener(new ListenerChoix());
-	    m.addMouseListener(new ListenerChoix());
-	    s.addMouseListener(new ListenerChoix());
+	    m.addActionListener(this);
+	    s.addActionListener(this);
+	    n.addActionListener(this);
 	    this.setLayout(new GridLayout(4,1));
 	    this.getContentPane().add(l);
 	    this.getContentPane().add(n);	   
@@ -56,21 +58,18 @@ public class ChoixUnite extends JFrame{
 	    ChoixUnite f = new ChoixUnite(c);
 	}
 	
-	public class ListenerChoix implements MouseListener {
-		@Override
-		public void mouseClicked(MouseEvent e) { 
-			if(e.getSource()==n)c.creerChevalier(c.getJoueurCourrant());
-			else if(e.getSource()==m)c.creerArcher(c.getJoueurCourrant());
-			else if(e.getSource()==s)c.creerPiquier(c.getJoueurCourrant());
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		
+		if(arg0.getSource() == n){
+			System.out.println("chevalier");
+			c.creerChevalier(c.getJoueurCourrant());
 		}
-		@Override
-		public void mouseEntered(MouseEvent e) { }
-		@Override
-		public void mouseExited(MouseEvent e) {	}
-		@Override
-		public void mousePressed(MouseEvent e) { }
-		@Override
-		public void mouseReleased(MouseEvent e) { }
+		else if(arg0.getSource()==m)c.creerArcher(c.getJoueurCourrant());
+		else if(arg0.getSource()==s)c.creerPiquier(c.getJoueurCourrant());
+		
 	}
+
 	
 }

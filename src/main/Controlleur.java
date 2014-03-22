@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import affichage.ChoixUnite;
 import affichage.Frame;
 
 import joueur.Joueur;
@@ -63,7 +64,6 @@ public class Controlleur {
 	public void initChateaux() {
 		// Placer chaque chateau sur la carte et l'affecter a un joueur
 		
-		Chateau c;
 		joueurs.get(1).setChateau(map.getChateau1());
 		joueurs.get(1).setChateau(map.getChateau2());
 		
@@ -84,6 +84,7 @@ public class Controlleur {
 	}
 	
 	public void creation () {
+		ChoixUnite choix = new ChoixUnite(this);
 		
 	}
 	
