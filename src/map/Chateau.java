@@ -69,4 +69,5 @@ public class Chateau extends Batiment {
         this.bufferedImage = bufferedImage;
     }
 
+    
 }

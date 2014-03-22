@@ -19,4 +19,12 @@ public class Terrain {
 	public boolean isPraticable() {
 		return praticable;
 	}
+	
+	/**
+	 * Représentation du terrain sous forme de chaine de character
+	 */
+	public String toString (){
+	    String praticabilité = praticable ? "praticable" : "impraticable";
+	    return "terrain "+praticabilité;
+	}
 }
