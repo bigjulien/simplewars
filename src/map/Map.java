@@ -193,13 +193,52 @@ public class Map {
 
 	public Cellule getVoisinLibre(Cellule cell) {
 		Coordonnee coord =cell.getCoordonnee();
+		
+		try{
 		if(grille[coord.getX()+1][coord.getY()].estVideetPrat() )
 		{
 			return grille[coord.getX()+1][coord.getY()];
 		}
-		else if(grille[coord.getX()][coord.getY()+1].estVideetPrat())
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			System.out.print("Plus de place");
+		}
+		
+		
+		try
+		{
+		if(grille[coord.getX()][coord.getY()+1].estVideetPrat())
 		{
 			return grille[coord.getX()][coord.getY()+1];
+		}
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			System.out.print("Plus de place");
+		}
+		
+		try
+		{
+		if(grille[coord.getX()-1][coord.getY()].estVideetPrat())
+		{
+			return grille[coord.getX()-1][coord.getY()];
+		}
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			System.out.print("Plus de place");
+		}
+		
+		try
+		{
+		if(grille[coord.getX()][coord.getY()-1].estVideetPrat())
+		{
+			return grille[coord.getX()][coord.getY()-1]; 
+		}
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			System.out.print("Plus de place");
 		}
 		return null;
 	}

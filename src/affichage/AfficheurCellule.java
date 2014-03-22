@@ -103,7 +103,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
         }
         else
         {
-        	if(c.nbClick)
+        	if(!c.deuxiemeClick)
         	{
         		c.prepareDeplacement(c.getJoueurCourant(), coordonee);
         	}
