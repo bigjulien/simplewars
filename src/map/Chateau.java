@@ -1,15 +1,19 @@
 package map;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+
 import joueur.Joueur;
 
-public class Chateau implements Batiment {
+public class Chateau extends Batiment {
 
 	private static String IMAGEPATH = "Units/unit_arch.png";
-	
-	private Joueur joueur;
-	private Cellule cell;
+
 
 	public Chateau (Cellule cell) {
+	    setBufferedImage(IMAGEPATH);
         this.cell = cell;
     }
     
@@ -45,5 +49,24 @@ public class Chateau implements Batiment {
 	    return "chateau n'ayant pas de joueur ou de cellule";
 	    
 	}
+
+
+	public void setBufferedImage(String imageLink) {
+        try {
+            bufferedImage = ImageIO.read(new File(imageLink));
+        } catch (Exception e) {
+            System.out.println("Fichier" + imageLink + " manquant ! ");
+        }
+    }
+
+
+    public BufferedImage getBufferedImage() {
+        return bufferedImage;
+    }
+
+
+    public void setBufferedImage(BufferedImage bufferedImage) {
+        this.bufferedImage = bufferedImage;
+    }
 
 }

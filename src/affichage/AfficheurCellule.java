@@ -64,6 +64,17 @@ public class AfficheurCellule extends JPanel implements MouseListener{
            
             
         }
+        if(cellule.contientBatiment()){
+            Batiment u =  cellule.getBatiment();
+            try {
+                BufferedImage bI=u.getBufferedImage();
+                System.out.println(u.getBufferedImage());
+                g.drawImage(bI,0, 0, getWidth(), getHeight(),this);
+            }catch(Exception e){
+                System.err.println("image batiment introuvable");
+            }
+        }
+        
         if(cellule.contientUnite()){
             Unite u = cellule.getUnit();
             try {
