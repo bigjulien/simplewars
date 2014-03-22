@@ -21,10 +21,10 @@ public class Terrain {
 	}
 	
 	/**
-	 * Représentation du terrain sous forme de chaine de character
+	 * Reprï¿½sentation du terrain sous forme de chaine de character
 	 */
 	public String toString (){
-	    String praticabilité = praticable ? "praticable" : "impraticable";
-	    return "terrain "+praticabilité;
+	    String praticabilite = praticable ? "praticable" : "impraticable";
+	    return "terrain "+praticabilite;
 	}
 }
