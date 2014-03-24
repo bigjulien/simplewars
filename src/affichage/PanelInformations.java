@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import main.Controlleur;
+
 /**
  * Panel comportant les informations de jeu tel que le joueur actuel etc...
  * @author Benjamin CLAQUIN
@@ -23,9 +25,9 @@ public class PanelInformations extends JPanel implements MouseListener {
     private JLabel points;
     private Dimension dimension = new Dimension(100,100);
     
+    private Controlleur control;
+    
     public PanelInformations() {
-        
-        
         tourSuivant = new JButton("suivant");
         joueurActuel = new JLabel("moi");
         points = new JLabel("12");
@@ -35,6 +37,11 @@ public class PanelInformations extends JPanel implements MouseListener {
         add(tourSuivant);
          
     }
+    
+    public void setControl (Controlleur c) {
+        this.control = c;
+    }
+    
 
     /**
      * Paint la cellule

@@ -37,12 +37,13 @@ public class Controlleur {
 	List<Joueur> joueurs;
 	Joueur j1 = new Joueur ("Joueur 1");
 	Joueur j2 = new Joueur ("Joueur 2");
-	private Joueur joueurCourant=j1;
 	
+	private int joueurCourrant;
+		
 	private static final String CONFIGPATH = "Map0";
 		
 	public Joueur getJoueurCourant() {
-		return joueurCourant;
+		return joueurs.get(joueurCourrant);
 	}
 	
 	public Controlleur() {
@@ -55,6 +56,10 @@ public class Controlleur {
 		this.run = true;
 	}
 	
+	public void joueurSuivant() {
+	    joueurCourrant = (joueurCourrant + 1) % joueurs.size();
+	}
+	
 	public void initJoueurs() {
 		joueurs = new ArrayList<>();
 		
@@ -65,6 +70,7 @@ public class Controlleur {
 		joueurs.add(j1);
 		joueurs.add(j2);
 		
+		joueurCourrant = 0;
 	}
 	
 	public void initChateaux() {
@@ -79,20 +85,6 @@ public class Controlleur {
 		joueurs.get(1).setChateau(b);
 		
 		
-	}
-	
-	public void run() {
-		while (run) {
-			phaseCreation();
-			
-		}
-	}
-	
-	public void phaseCreation() {
-		for (Joueur j : joueurs) {
-			joueurCourant = j;
-			creation();
-		}
 	}
 	
 	public void creation () {
@@ -221,15 +213,15 @@ public class Controlleur {
 	}
 	
 	public void creerArcher(Joueur joueur) {
-	    creerUnit(joueurCourant, new Archer(joueurCourant));
+	    creerUnit(joueur, new Archer(joueur));
 	}
 	
 	public void creerChevalier(Joueur joueur) {
-	    creerUnit(joueurCourant, new Chevalier(joueurCourant));
+	    creerUnit(joueur, new Chevalier(joueur));
 	}
 	
 	public void creerPiquier(Joueur joueur) {
-	    creerUnit(joueur, new Piquier(joueurCourant));
+	    creerUnit(joueur, new Piquier(joueur));
 	}
 
 	
