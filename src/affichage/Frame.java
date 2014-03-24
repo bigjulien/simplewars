@@ -25,7 +25,7 @@ private Map map;
 private JPanel panelCarte;
 private PanelInformations panelInformations;
 
-public Frame(Map map, Controlleur c) {
+public Frame(Map map, PanelCarte panelCarte, PanelInformations panelInfo) {
     
     this.setLayout(new BorderLayout());
 
@@ -37,9 +37,9 @@ public Frame(Map map, Controlleur c) {
     setUndecorated(false);
     setBackground(Color.white);
 
-    panelCarte = new PanelCarte(map,c);
+    this.panelCarte = panelCarte;
     //panelCarte.setPreferredSize(new Dimension(100,100));
-    panelInformations = new PanelInformations();
+    panelInformations = panelInfo;
     panelInformations.setPreferredSize(panelInformations.getDimension());
      this.add(panelCarte,BorderLayout.CENTER);
      this.add(panelInformations,BorderLayout.LINE_END);

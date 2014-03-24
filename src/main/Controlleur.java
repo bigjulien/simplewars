@@ -6,6 +6,7 @@ import java.util.Random;
 
 import affichage.ChoixUnite;
 import affichage.Frame;
+import affichage.PanelInformations;
 
 import joueur.Joueur;
 
@@ -46,11 +47,14 @@ public class Controlleur {
 		return joueurs.get(joueurCourrant);
 	}
 	
-	public Controlleur() {
+	public Controlleur(Map map, Frame frame, PanelInformations panelInfo) {
+        this.map = map;
 		initJoueurs();
-		initMap();
 		initChateaux();
-		f = new Frame(map,this);
+		f = frame;
+		
+		panelInfo.addJoueurChangedListener(panelInfo);
+		
 		// Ready to play
 		this.rand = new Random();
 		this.run = true;

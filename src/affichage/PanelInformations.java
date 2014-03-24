@@ -2,6 +2,8 @@ package affichage;
 
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Dimension;
@@ -10,6 +12,12 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.event.EventListenerList;
+
+import joueur.Joueur;
+
+import event.JoueurChangedEvent;
+import event.JoueurChangedListener;
 
 import main.Controlleur;
 
@@ -18,7 +26,7 @@ import main.Controlleur;
  * @author Benjamin CLAQUIN
  *
  */
-public class PanelInformations extends JPanel implements MouseListener {
+public class PanelInformations extends JPanel implements MouseListener, JoueurChangedListener {
 
     private JButton tourSuivant;
     private JLabel joueurActuel;
@@ -27,8 +35,18 @@ public class PanelInformations extends JPanel implements MouseListener {
     
     private Controlleur control;
     
+    private EventListenerList listenersChangementJoueur;
+    
     public PanelInformations() {
+        listenersChangementJoueur = new EventListenerList();
+        
         tourSuivant = new JButton("suivant");
+        tourSuivant.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                changerJoueur();
+            }
+        });
+        
         joueurActuel = new JLabel("moi");
         points = new JLabel("12");
         
@@ -36,6 +54,30 @@ public class PanelInformations extends JPanel implements MouseListener {
         add(points);
         add(tourSuivant);
          
+    }
+    
+    public void changed(JoueurChangedEvent e) {
+        Joueur j = e.getJoueur();
+        joueurActuel.setText(j.getNom());
+        
+    }
+    
+    public void changerJoueur() {
+        control.joueurSuivant();
+        fireJoueurChangedEvent();
+    }
+    
+    public void fireJoueurChangedEvent() {
+        
+        JoueurChangedEvent evt = new JoueurChangedEvent(this, control.getJoueurCourant());
+        
+        for (JoueurChangedListener l : listenersChangementJoueur.getListeners(JoueurChangedListener.class)) {
+            l.changed(evt);
+        }
+    }
+    
+    public void addJoueurChangedListener(JoueurChangedListener l) {
+        listenersChangementJoueur.add(JoueurChangedListener.class, l);
     }
     
     public void setControl (Controlleur c) {
