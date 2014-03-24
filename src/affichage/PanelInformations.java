@@ -26,7 +26,7 @@ import main.Controlleur;
  * @author Benjamin CLAQUIN
  *
  */
-public class PanelInformations extends JPanel implements MouseListener, JoueurChangedListener {
+public class PanelInformations extends JPanel implements JoueurChangedListener {
 
     private JButton tourSuivant;
     private JLabel joueurActuel;
@@ -47,8 +47,10 @@ public class PanelInformations extends JPanel implements MouseListener, JoueurCh
             }
         });
         
-        joueurActuel = new JLabel("moi");
+        joueurActuel = new JLabel("Joueur 1");
         points = new JLabel("12");
+        
+        setLayout(new GridLayout(1, 3));
         
         add(joueurActuel);
         add(points);
@@ -59,7 +61,6 @@ public class PanelInformations extends JPanel implements MouseListener, JoueurCh
     public void changed(JoueurChangedEvent e) {
         Joueur j = e.getJoueur();
         joueurActuel.setText(j.getNom());
-        
     }
     
     public void changerJoueur() {
@@ -82,46 +83,6 @@ public class PanelInformations extends JPanel implements MouseListener, JoueurCh
     
     public void setControl (Controlleur c) {
         this.control = c;
-    }
-    
-
-    /**
-     * Paint la cellule
-     */
-    public void paintComponent(Graphics g) {      
-    }
-    
-    
-    
-    
-    @Override
-    public void mouseClicked(MouseEvent arg0) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent arg0) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void mouseExited(MouseEvent arg0) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void mousePressed(MouseEvent arg0) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent arg0) {
-        // TODO Auto-generated method stub
-        
     }
 
     

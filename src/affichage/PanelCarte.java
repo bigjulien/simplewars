@@ -22,7 +22,7 @@ public class PanelCarte extends JPanel {
         
         largeur = map.getLargeur();
         hauteur = map.getHauteur();
-        
+                
         tableauDeCellules = new AfficheurCellule[largeur][hauteur];
         
         setLayout(new GridLayout(largeur,hauteur));
@@ -32,7 +32,8 @@ public class PanelCarte extends JPanel {
                 tableauDeCellules[i][j] = aC;
                 add(aC);
             }
-        }       
+        }
+        
     }
     
     public void setControl (Controlleur c) {
