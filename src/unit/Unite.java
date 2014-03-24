@@ -17,8 +17,16 @@ public abstract class Unite {
 	protected Joueur joueur;
 	
 	
-	public Unite (){
-	    
+	public Unite (Joueur j){
+        this.joueur = j;
+        String path = "Units/unit_" + getNomAbrev() + (j.isGauche() ? "G" : "D") + ".png";
+
+        try {
+            bufferedImage = ImageIO.read(new File(path));
+            
+        } catch (Exception e) {
+            System.out.println("Fichier manquant : " + path);
+        }
 	}
 	
 	/**
@@ -46,18 +54,8 @@ public abstract class Unite {
     public BufferedImage getBufferedImage() {
         return bufferedImage;
     }
-
-    public void setBufferedImage(BufferedImage bufferedImage) {
-        this.bufferedImage = bufferedImage;
-    }
     
-    public void setBufferedImage(String imageLink) {
-        try {
-            bufferedImage = ImageIO.read(new File(imageLink));
-        } catch (Exception e) {
-            System.out.println("Fichier" + imageLink + " manquant ! ");
-        }
-    }
+    public abstract String getNomAbrev();
 
     public boolean isDejaDeplace() {
         return dejaDeplace;

@@ -3,18 +3,14 @@ package unit;
 import joueur.Joueur;
 
 public class Chevalier extends Unite {
-
-    private static final String imageSoldatGauche = "Units/unit_chev - Copie.png";
-    private static final String imageSoldatDroite = "Units/unit_chev.png";
+    
+    private static final String ABREV = "chev";
     
     private static final int NBDEPLACEMENT = 2;
     
     public Chevalier (Joueur joueur){
-        this.joueur=joueur;
-        if (!joueur.isGauche())
-            setBufferedImage(imageSoldatDroite);
-        if (joueur.isGauche())
-            setBufferedImage(imageSoldatGauche);
+        super(joueur);
+
     }
     
     public int getNbDeplacement() {
@@ -29,6 +25,10 @@ public class Chevalier extends Unite {
             System.err.println("lel, un chevalier n'a pas de joueur");
         }
         return "error";
+    }
+
+    public String getNomAbrev() {
+        return ABREV;
     }
 
 }

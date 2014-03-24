@@ -5,17 +5,12 @@ import joueur.Joueur;
 public class Archer extends Unite {
     
 
-    private static final String imageSoldatGauche = "Units/unit_arch - Copie.png";
-    private static final String imageSoldatDroite = "Units/unit_arch.png";
+    private static final String ABREV = "arch";
     
     private static final int NBDEPLACEMENT = 1;
         
     public Archer(Joueur joueur){
-        this.joueur=joueur;
-        if (joueur.isGauche())
-            setBufferedImage(imageSoldatDroite);
-        if (joueur.isGauche())
-            setBufferedImage(imageSoldatGauche);
+        super(joueur);
     }
     
     public int getNbDeplacement() {
@@ -30,6 +25,11 @@ public class Archer extends Unite {
             System.err.println("lel, un archer n'a pas de joueur");
         }
         return "error";
+    }
+
+    @Override
+    public String getNomAbrev() {
+        return ABREV;
     }
 
 }
