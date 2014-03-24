@@ -56,9 +56,15 @@ public class ChoixUnite extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
-		if(arg0.getSource() == n){c.creerChevalier(c.getJoueurCourant());}
-		else if(arg0.getSource()==m){System.out.print("a");c.creerArcher(c.getJoueurCourant());}
-		else if(arg0.getSource()==s)c.creerPiquier(c.getJoueurCourant());
+		if (arg0.getSource() == n)
+		    c.creerChevalier(c.getJoueurCourant());
+		
+		else if (arg0.getSource() == m) 
+		    c.creerArcher(c.getJoueurCourant());
+		
+		else if (arg0.getSource() == s) 
+		    c.creerPiquier(c.getJoueurCourant());
+		
 		dispose();
 		
 	}
