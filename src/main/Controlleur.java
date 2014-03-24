@@ -62,6 +62,7 @@ public class Controlleur {
 	
 	public void joueurSuivant() {
 	    joueurCourrant = (joueurCourrant + 1) % joueurs.size();
+	    getJoueurCourant().resetDejaDeplace();
 	}
 	
 	public void initJoueurs() {
@@ -123,14 +124,17 @@ public class Controlleur {
 		return true;
 	}
 	
+	private void deleteUnit(Cellule c) {
+        c.getUnit().getJoueur().delUnit(c.getUnit());
+        c.setUnit(null);
+	}
+	
 	private boolean combat (Cellule org, Cellule dst) {
-		if (attack(org.getUnit(), dst.getUnit())) {
-			dst.setUnit(null);
-			return true;
-		}
+		boolean win = attack(org.getUnit(), dst.getUnit());
 		
-		org.setUnit(null);
-		return false;
+		deleteUnit(win ? dst : org);
+		
+		return win;
 	}
 	
 	private boolean attackFavorable() {
@@ -211,8 +215,8 @@ public class Controlleur {
 	
 	
 	private void creerUnit(Joueur joueur, Unite unit) {
-	    System.out.println(joueur.getChateau());
 	    map.getVoisinLibre(joueur.getChateau().getCell()).setUnit(unit);
+	    joueur.addUnit(unit);
 	}
 	
 	public void creerArcher(Joueur joueur) {
