@@ -39,7 +39,7 @@ public class Map {
     }
 
     public Chateau getChateau2() {
-        return chateau1;
+        return chateau2;
     }
     
     public Coordonnee getCoordoneeChateau1(){

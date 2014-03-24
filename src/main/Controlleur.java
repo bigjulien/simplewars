@@ -85,8 +85,6 @@ public class Controlleur {
 		b.setJoueur(j2);
 		j1.setChateau(a);
 		j2.setChateau(b);
-		joueurs.get(1).setChateau(a);
-		joueurs.get(1).setChateau(b);
 		
 		
 	}
@@ -213,6 +211,7 @@ public class Controlleur {
 	
 	
 	private void creerUnit(Joueur joueur, Unite unit) {
+	    System.out.println(joueur.getChateau());
 	    map.getVoisinLibre(joueur.getChateau().getCell()).setUnit(unit);
 	}
 	

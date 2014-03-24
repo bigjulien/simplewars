@@ -24,7 +24,7 @@ public class Main {
 	    Frame frame = new Frame(map, panelCarte, panelInfo);
 	    
 	    Controlleur c = new Controlleur(map, frame, panelInfo);
-	    
+	    	    
 	    panelCarte.setControl(c);
 	    panelInfo.setControl(c);
 	}
