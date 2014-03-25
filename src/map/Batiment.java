@@ -13,13 +13,9 @@ public abstract class Batiment {
     public BufferedImage getBufferedImage() {
         return bufferedImage;
     }
-    
-    public Joueur getJoueur(){
-        return joueur;
-    }
-    
-    public void setJoueur(Joueur j){
-       this.joueur=j;
+
+    public Joueur getJoueur() {
+       return joueur;
     }
     
 }

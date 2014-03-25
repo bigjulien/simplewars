@@ -104,7 +104,6 @@ public class AfficheurCellule extends JPanel implements MouseListener{
             System.out.println("joueur courrant "+c.getJoueurCourant());
             // si le batiment appartient au joueur
             if (cellule.getBatiment().getJoueur().equals(c.getJoueurCourant())){
-                System.out.println("oui je te prend pour un con");
                 c.creation();
             }
         }
