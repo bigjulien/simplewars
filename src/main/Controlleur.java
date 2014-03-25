@@ -1,5 +1,6 @@
 package main;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -7,9 +8,7 @@ import java.util.Random;
 import affichage.ChoixUnite;
 import affichage.Frame;
 import affichage.PanelInformations;
-
 import joueur.Joueur;
-
 import map.Chateau;
 import map.Map;
 
@@ -206,6 +205,23 @@ public class Controlleur {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * Fonction permettant de recuperer toutes les coordonnes de la grille accessible a partir d'une coordonne, pour un deplacement simple
+	 * 
+	 * @param a
+	 * @return
+	 */
+	public ArrayList<Coordonnee> getRespectfullCases(Coordonnee a){
+	    ArrayList<Coordonnee> listeDeCellules=new ArrayList();
+	    for (int i=0;i<map.getGrille().length;i++){
+	        for (int j=0;j<map.getGrille()[i].length;j++){
+	            if (respecteLimiteDeplacement(a,map.getGrille()[i][j].getCoordonnee()))
+	                listeDeCellules.add(map.getGrille()[i][j].getCoordonnee());
+	        }
+	    }
+	    return listeDeCellules;
 	}
 	
 	public void initMap() {
