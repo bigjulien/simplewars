@@ -31,19 +31,16 @@ public class Chateau extends Batiment {
 		return IMAGEPATH;
 	}
 	
-	public Joueur getJoueur() {
-	    return joueur;
-	}
 	
 	public Cellule getCell() {
 	    return cell;
 	}
 	
 	
-	
+	/*
 	public String toString(){
 	    if (cell!=null && joueur!=null)
-	        return " (Chateau du joueur "+joueur+" "+cell+" "+") ";
+	        return " (Chateau du joueur "+cell+" "+") ";
 	    else if (joueur==null)
 	        System.err.println("lel, ce chateau n'a pas de joueur");
 	    else if (cell==null)
@@ -51,7 +48,7 @@ public class Chateau extends Batiment {
 	    return "chateau n'ayant pas de joueur ou de cellule";
 	    
 	}
-
+*/
 
 	public void setBufferedImage(String imageLink) {
         try {
@@ -61,10 +58,6 @@ public class Chateau extends Batiment {
         }
     }
 	
-	public void setJoueur(Joueur j)
-	{
-		this.joueur = j;
-	}
 
     public BufferedImage getBufferedImage() {
         return bufferedImage;

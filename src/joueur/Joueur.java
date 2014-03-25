@@ -37,5 +37,9 @@ public class Joueur {
     public void setGauche(boolean gauche) {
         this.gauche = gauche;
     }
+    
+    public String toString (){
+        return nom+chateau;
+    }
 	
 }

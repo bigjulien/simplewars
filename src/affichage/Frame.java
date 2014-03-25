@@ -39,7 +39,7 @@ public Frame(Map map, Controlleur c) {
 
     panelCarte = new PanelCarte(map,c);
     //panelCarte.setPreferredSize(new Dimension(100,100));
-    panelInformations = new PanelInformations();
+    panelInformations = new PanelInformations(c);
     panelInformations.setPreferredSize(panelInformations.getDimension());
      this.add(panelCarte,BorderLayout.CENTER);
      this.add(panelInformations,BorderLayout.LINE_END);

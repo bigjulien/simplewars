@@ -28,13 +28,17 @@ import map.Coordonnee;
  */
 public class Controlleur {
 	private Map map;
+	
+	// Un rand pour qu'il y ai une part d'aléatoire dans les combats
 	private Random rand;
 	Frame f;
+	
+	// run indique que le jeu n'est pas fini lorsqu'il est true
 	private boolean run;
 	public boolean deuxiemeClick =false;
 	public Coordonnee memoire ;
 	public static Infos infos = new Infos() ;
-	List<Joueur> joueurs;
+	
 	Joueur j1 = new Joueur ("Joueur 1");
 	Joueur j2 = new Joueur ("Joueur 2");
 	private Joueur joueurCourant=j1;
@@ -55,15 +59,12 @@ public class Controlleur {
 		this.run = true;
 	}
 	
-	public void initJoueurs() {
-		joueurs = new ArrayList<>();
+	public void initJoueurs() {	
 		
 		// Deux joueur dans cette version du jeu
 		
 		j1.setGauche(false);
 		j2.setGauche(true);
-		joueurs.add(j1);
-		joueurs.add(j2);
 		
 	}
 	
@@ -71,16 +72,29 @@ public class Controlleur {
 		// Placer chaque chateau sur la carte et l'affecter a un joueur
 		Chateau a = map.getChateau1();
 		Chateau b = map.getChateau2();
+		System.out.println(a+"    "+b);
 		a.setJoueur(j1);
+		System.out.println(j1+" "+a.getJoueur());
 		b.setJoueur(j2);
 		j1.setChateau(a);
 		j2.setChateau(b);
-		joueurs.get(1).setChateau(a);
-		joueurs.get(1).setChateau(b);
-		
 		
 	}
 	
+	
+	/**
+	 * Passe au tour du joueur suivant
+	 */
+	public void tourSuivant(){
+	    if (joueurCourant.equals(j1))
+	        joueurCourant=j2;
+	    if (joueurCourant.equals(j2))
+	        joueurCourant=j1;
+	}
+	
+	/**
+	 * Boucle principale du jeu
+	 */
 	public void run() {
 		while (run) {
 			phaseCreation();
@@ -89,15 +103,11 @@ public class Controlleur {
 	}
 	
 	public void phaseCreation() {
-		for (Joueur j : joueurs) {
-			joueurCourant = j;
 			creation();
-		}
 	}
 	
 	public void creation () {
 		ChoixUnite choix = new ChoixUnite(this);
-		
 	}
 	
 	

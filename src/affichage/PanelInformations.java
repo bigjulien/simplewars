@@ -2,6 +2,8 @@ package affichage;
 
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Dimension;
@@ -11,21 +13,23 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import main.Controlleur;
+
 /**
  * Panel comportant les informations de jeu tel que le joueur actuel etc...
  * @author Benjamin CLAQUIN
  *
  */
-public class PanelInformations extends JPanel implements MouseListener {
+public class PanelInformations extends JPanel implements MouseListener,ActionListener {
 
     private JButton tourSuivant;
     private JLabel joueurActuel;
     private JLabel points;
     private Dimension dimension = new Dimension(100,100);
-    
-    public PanelInformations() {
+    private Controlleur controlleur;
+    public PanelInformations(Controlleur c) {
         
-        
+        controlleur=c;
         tourSuivant = new JButton("suivant");
         joueurActuel = new JLabel("moi");
         points = new JLabel("12");
@@ -83,6 +87,15 @@ public class PanelInformations extends JPanel implements MouseListener {
 
     public void setDimension(Dimension dimention) {
         this.dimension = dimention;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent arg0) {
+        
+        if(arg0.getSource() == tourSuivant){
+            controlleur.tourSuivant();
+        }
+        
     }
     
     

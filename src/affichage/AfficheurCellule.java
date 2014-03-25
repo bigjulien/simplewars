@@ -97,9 +97,16 @@ public class AfficheurCellule extends JPanel implements MouseListener{
     
     
     public void mouseClicked(MouseEvent arg0) {
+        // Si on clique sur une cellule qui a un batiment au premier clic
         if(cellule.contientBatiment())
         {
-        	c.creation();
+            System.out.println("joueur du chateau "+cellule.getBatiment().getJoueur());
+            System.out.println("joueur courrant "+c.getJoueurCourant());
+            // si le batiment appartient au joueur
+            if (cellule.getBatiment().getJoueur().equals(c.getJoueurCourant())){
+                System.out.println("oui je te prend pour un con");
+                c.creation();
+            }
         }
         else
         {

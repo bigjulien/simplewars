@@ -97,7 +97,7 @@ public class Map {
             case "chateau1": chateau1 = new Chateau(grille[Integer.parseInt(tab[1])][Integer.parseInt(tab[2])]);
                              grille[Integer.parseInt(tab[1])][Integer.parseInt(tab[2])].setBatiment(chateau1);; break;
             case "chateau2": chateau2 = new Chateau(grille[Integer.parseInt(tab[1])][Integer.parseInt(tab[2])]);
-                             grille[Integer.parseInt(tab[1])][Integer.parseInt(tab[2])].setBatiment(chateau1);; break;
+                             grille[Integer.parseInt(tab[1])][Integer.parseInt(tab[2])].setBatiment(chateau2);; break;
             case "Archer":  Archer archer = new Archer(new Joueur("joueur",true));
                             archer.setJoueur(new Joueur("babar"));
                             grille[Integer.parseInt(tab[1])][Integer.parseInt(tab[2])].setUnit(archer);; break;
