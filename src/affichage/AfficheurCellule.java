@@ -23,7 +23,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
     private Color color=Color.BLACK;
     private Coordonnee coordonee;
     private Cellule cellule;
-    Controlleur c;
+    Controlleur controlleur;
 
 
    private final int BORDERBOLD =4;
@@ -66,9 +66,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
             g.setColor(cellule.getTerrain().getCouleur());
             g.fillRect(0, 0, getWidth(), getHeight());
             setBorder(BorderFactory.createLineBorder(Color.black,BORDERBOLD));
-
            
-            
         }
         if(cellule.contientBatiment()){
             Batiment u =  cellule.getBatiment();
@@ -101,21 +99,21 @@ public class AfficheurCellule extends JPanel implements MouseListener{
         if(cellule.contientBatiment())
         {
             System.out.println("joueur du chateau "+cellule.getBatiment().getJoueur());
-            System.out.println("joueur courrant "+c.getJoueurCourant());
+            System.out.println("joueur courrant "+controlleur.getJoueurCourant());
             // si le batiment appartient au joueur
-            if (cellule.getBatiment().getJoueur().equals(c.getJoueurCourant())){
-                c.creation();
+            if (cellule.getBatiment().getJoueur().equals(controlleur.getJoueurCourant())){
+                controlleur.creation();
             }
         }
         else
         {
-        	if(!c.deuxiemeClick)
+        	if(!controlleur.deuxiemeClick)
         	{
-        		c.prepareDeplacement(c.getJoueurCourant(), coordonee);
+        		controlleur.prepareDeplacement(controlleur.getJoueurCourant(), coordonee);
         	}
         	else
         	{
-        		c.deplacer(c.getJoueurCourant(),c.memoire , coordonee);
+        		controlleur.deplacer(controlleur.getJoueurCourant(),controlleur.memoire , coordonee);
         	}
         }
 
@@ -143,7 +141,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
     
     public void setControl(Controlleur c)
     {
-    	this.c  =c;
+    	this.controlleur  =c;
     }
 
 }
