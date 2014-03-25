@@ -27,7 +27,7 @@ public class ChoixUnite extends JFrame implements ActionListener{
 	JButton n = new JButton("Chevalier");
 	JButton m = new JButton("Archer");
 	JButton s = new JButton("Piquier");
-	JLabel l = new JLabel("Que veux tu créer ?");
+	JLabel l = new JLabel("Que veux tu creer ?");
 	public ChoixUnite(Controlleur c)
 	{
 	    this.setTitle("Choix d'unité");

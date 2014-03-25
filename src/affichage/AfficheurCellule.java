@@ -24,7 +24,7 @@ public class AfficheurCellule extends JPanel implements MouseListener{
     private Coordonnee coordonee;
     private Cellule cellule;
     Controlleur controlleur;
-
+    private boolean isSelected =false;
 
    private final int BORDERBOLD =4;
 
@@ -68,6 +68,12 @@ public class AfficheurCellule extends JPanel implements MouseListener{
             setBorder(BorderFactory.createLineBorder(Color.black,BORDERBOLD));
            
         }
+        
+        if (isSelected){
+            g.setColor(Color.BLUE);
+            g.fillRect(0, 0, getWidth(), getHeight());
+        }
+        
         if(cellule.contientBatiment()){
             Batiment u =  cellule.getBatiment();
             try {
@@ -121,10 +127,13 @@ public class AfficheurCellule extends JPanel implements MouseListener{
 
     @Override
     public void mouseEntered(MouseEvent arg0) {
+        isSelected = true;
     }
+    
 
     @Override
     public void mouseExited(MouseEvent arg0) {
+        isSelected = false;
     }
 
     @Override
