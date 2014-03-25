@@ -17,20 +17,34 @@ public class PanelCarte extends JPanel {
      * Panel sur lequel est affiche la carte de jeu
      * @param map
      */
-    public PanelCarte(Map map, Controlleur c){
+    public PanelCarte(Map map){
         this.map=map;
         
         largeur = map.getLargeur();
         hauteur = map.getHauteur();
+                
+        tableauDeCellules = new AfficheurCellule[largeur][hauteur];
         
         setLayout(new GridLayout(largeur,hauteur));
         for (int i = 0; i <largeur ; i++) {
             for (int j = 0; j <largeur ; j++){
                 AfficheurCellule aC = new AfficheurCellule(map.getGrille()[i][j]);
-                aC.setControl(c);
-           
+                tableauDeCellules[i][j] = aC;
                 add(aC);
             }
-        }       
-    }    
+        }
+        
+    }
+    
+    public void setControl (Controlleur c) {
+        this.c = c;
+        
+        //Propagation du controlleur aux cellules
+        for (int i = 0; i < tableauDeCellules.length ; i++) {
+            for (int j = 0; j < tableauDeCellules[i].length ; j++){
+                tableauDeCellules[i][j].setControl(c);
+
+            }
+        }     
+    }
 }
