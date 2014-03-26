@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import event.ColourCaseListener;
 import main.Controlleur;
 import map.*;
 import unit.*;
@@ -19,13 +20,14 @@ import unit.*;
  * @author Benjamin CLAQUIN
  *
  */
-public class AfficheurCellule extends JPanel implements MouseListener{
+public class AfficheurCellule extends JPanel implements MouseListener,ColourCaseListener{
     private Color color=Color.BLACK;
     private Coordonnee coordonee;
     private Cellule cellule;
-    Controlleur controlleur;
-    private boolean isSelected =false;
-
+    Controlleur c;
+    private boolean belongToChampDeMovement=false;
+    private boolean onOver=false;
+    
    private final int BORDERBOLD =4;
 
     public AfficheurCellule(Cellule cellule) {
@@ -68,12 +70,14 @@ public class AfficheurCellule extends JPanel implements MouseListener{
             setBorder(BorderFactory.createLineBorder(Color.black,BORDERBOLD));
            
         }
-        
-        if (isSelected){
+        if(this.belongToChampDeMovement){
+            g.setColor(Color.decode("#3399CC"));
+            g.fillRect(0, 0, getWidth(), getHeight());
+        }
+        if(this.onOver){
             g.setColor(Color.BLUE);
             g.fillRect(0, 0, getWidth(), getHeight());
         }
-        
         if(cellule.contientBatiment()){
             Batiment u =  cellule.getBatiment();
             try {
@@ -105,22 +109,25 @@ public class AfficheurCellule extends JPanel implements MouseListener{
         if(cellule.contientBatiment())
         {
             System.out.println("joueur du chateau "+cellule.getBatiment().getJoueur());
-            System.out.println("joueur courrant "+controlleur.getJoueurCourant());
+            System.out.println("joueur courrant "+c.getJoueurCourant());
             // si le batiment appartient au joueur
-            if (cellule.getBatiment().getJoueur().equals(controlleur.getJoueurCourant())){
-                controlleur.creation();
+            if (cellule.getBatiment().getJoueur().equals(c.getJoueurCourant())){
+                c.creation();
             }
+            c.unColourAllCorrectCase();
         }
         else
         {
-        	if(!controlleur.deuxiemeClick)
+        	if(!c.deuxiemeClick)
         	{
-        		controlleur.prepareDeplacement(controlleur.getJoueurCourant(), coordonee);
-        		System.out.println(controlleur.getRespectfullCases(coordonee));
+        	    c.getRespectfullCases(coordonee);
+        	    c.colourAllCorrectCase();
+        		c.prepareDeplacement(c.getJoueurCourant(), coordonee);
         	}
         	else
         	{
-        		controlleur.deplacer(controlleur.getJoueurCourant(),controlleur.memoire , coordonee);
+        	    c.unColourAllCorrectCase();
+        	    c.deplacer(c.getJoueurCourant(),c.memoire , coordonee);
         	}
         }
 
@@ -128,13 +135,12 @@ public class AfficheurCellule extends JPanel implements MouseListener{
 
     @Override
     public void mouseEntered(MouseEvent arg0) {
-        isSelected = true;
+        onOver=true;
     }
-    
 
     @Override
     public void mouseExited(MouseEvent arg0) {
-        isSelected = false;
+        onOver=false;
     }
 
     @Override
@@ -151,7 +157,19 @@ public class AfficheurCellule extends JPanel implements MouseListener{
     
     public void setControl(Controlleur c)
     {
-    	this.controlleur  =c;
+    	this.c  =c;
+    }
+
+    @Override
+    public void colourCase(Coordonnee c) {
+        if (c.equals(this.coordonee))
+            this.belongToChampDeMovement=true;
+    }
+
+    @Override
+    public void decolourCase(Coordonnee c) {
+        if (c.equals(this.coordonee))
+            this.belongToChampDeMovement=false;
     }
 
 }
