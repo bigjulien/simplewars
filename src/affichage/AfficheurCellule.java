@@ -104,8 +104,6 @@ public class AfficheurCellule extends JPanel implements MouseListener{
         // Si on clique sur une cellule qui a un batiment au premier clic
         if(cellule.contientBatiment())
         {
-            System.out.println("joueur du chateau "+cellule.getBatiment().getJoueur());
-            System.out.println("joueur courrant "+controlleur.getJoueurCourant());
             // si le batiment appartient au joueur
             if (cellule.getBatiment().getJoueur().equals(controlleur.getJoueurCourant())){
                 controlleur.creation();
@@ -113,10 +111,10 @@ public class AfficheurCellule extends JPanel implements MouseListener{
         }
         else
         {
-        	if(!controlleur.deuxiemeClick)
+        	if(!controlleur.deuxiemeClick && this.cellule.contientUnite())
         	{
+  
         		controlleur.prepareDeplacement(controlleur.getJoueurCourant(), coordonee);
-        		System.out.println(controlleur.getRespectfullCases(coordonee));
         	}
         	else
         	{
