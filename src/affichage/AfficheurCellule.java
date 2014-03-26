@@ -24,7 +24,7 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
     private Color color=Color.BLACK;
     private Coordonnee coordonee;
     private Cellule cellule;
-    Controlleur c;
+    Controlleur controlleur;
     private boolean belongToChampDeMovement=false;
     private boolean onOver=false;
     
@@ -108,26 +108,30 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
         // Si on clique sur une cellule qui a un batiment au premier clic
         if(cellule.contientBatiment())
         {
-            System.out.println("joueur du chateau "+cellule.getBatiment().getJoueur());
-            System.out.println("joueur courrant "+c.getJoueurCourant());
             // si le batiment appartient au joueur
-            if (cellule.getBatiment().getJoueur().equals(c.getJoueurCourant())){
-                c.creation();
+            if (cellule.getBatiment().getJoueur().equals(controlleur.getJoueurCourant())){
+                controlleur.creation();
             }
-            c.unColourAllCorrectCase();
+            controlleur.unColourAllCorrectCase();
         }
         else
         {
-        	if(!c.deuxiemeClick)
+        	if(!controlleur.deuxiemeClick && this.cellule.contientUnite())
+
         	{
-        	    c.getRespectfullCases(coordonee);
-        	    c.colourAllCorrectCase();
-        		c.prepareDeplacement(c.getJoueurCourant(), coordonee);
+
+        	    controlleur.getRespectfullCases(coordonee);
+        	    controlleur.colourAllCorrectCase();
+        		controlleur.prepareDeplacement(controlleur.getJoueurCourant(), coordonee);
+
+  
+        		controlleur.prepareDeplacement(controlleur.getJoueurCourant(), coordonee);
+
         	}
         	else
         	{
-        	    c.unColourAllCorrectCase();
-        	    c.deplacer(c.getJoueurCourant(),c.memoire , coordonee);
+        	    controlleur.unColourAllCorrectCase();
+        	    controlleur.deplacer(controlleur.getJoueurCourant(),controlleur.memoire , coordonee);
         	}
         }
 
@@ -157,7 +161,7 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
     
     public void setControl(Controlleur c)
     {
-    	this.c  =c;
+    	this.controlleur  =c;
     }
 
     @Override
