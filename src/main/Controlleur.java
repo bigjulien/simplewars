@@ -250,7 +250,8 @@ public class Controlleur {
 	    for (int i=0;i<map.getGrille().length;i++){
 	        for (int j=0;j<map.getGrille()[i].length;j++){
 	            if (respecteLimiteDeplacement(a,map.getGrille()[i][j].getCoordonnee())){
-	                listeCasesColoriees.add(map.getGrille()[i][j].getCoordonnee());
+	                if (map.getGrille()[i][j].getTerrain().isPraticable())
+	                    listeCasesColoriees.add(map.getGrille()[i][j].getCoordonnee());
 	            }
 	        }
 	    }
