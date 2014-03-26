@@ -92,13 +92,11 @@ public class Controlleur {
 	}
 	
 	public void creation () {
-		ChoixUnite choix = new ChoixUnite(this);
-		
+		ChoixUnite choix = new ChoixUnite(this);	
 	}
 	
 	
 	public void prepareDeplacement (Joueur j, Coordonnee c) {
-		System.out.println("AIAIAI");
 		memoire = c;
 		deuxiemeClick = true;
 	}
@@ -108,8 +106,6 @@ public class Controlleur {
 	}
 	
 	public boolean deplacer (Joueur j, Coordonnee org, Coordonnee dst) {
-		System.out.println(org.getY());
-		System.out.println(dst.getY());
 		Unite unit = map.getCellule(org).getUnit();
 		
 		// Si il n'y a pas d'unite a deplacer ou que l'unite selectionnee n'appartient pas au joueur
@@ -247,8 +243,17 @@ public class Controlleur {
 	
 	
 	private void creerUnit(Joueur joueur, Unite unit) {
-	    map.getVoisinLibre(joueur.getChateau().getCell()).setUnit(unit);
-	    joueur.addUnit(unit);
+		try
+		{
+			map.getVoisinLibre(joueur.getChateau().getCell()).setUnit(unit);	    
+			joueur.addUnit(unit);
+		}
+		catch(NullPointerException e)
+		{
+			JOptionPane jop = new JOptionPane();
+			jop.showMessageDialog(null, "<HTML> <FONT SIZE=200><B>Plus de place</B></HTML>", "", JOptionPane.WARNING_MESSAGE);
+			
+		}
 	}
 	
 	public void creerArcher(Joueur joueur) {
