@@ -70,7 +70,7 @@ public class Controlleur {
 		this.run = true;
 	}
 	
-	void onStateRealized(ColourCaseListener l) {
+	public void onStateRealized(ColourCaseListener l) {
 	    this.colourCaseListener = l;
 	}
 	
@@ -247,7 +247,6 @@ public class Controlleur {
 	    Iterator<Coordonnee> it = listeCasesColoriees.iterator();
 	    while (it.hasNext()) {
 	           Coordonnee coordonnee = it.next();
-	           System.out.println(coordonnee);
 	           colourCaseListener.colourCase(coordonnee);
 	    }   
 	    }

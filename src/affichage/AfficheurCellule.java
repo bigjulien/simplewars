@@ -71,6 +71,7 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
            
         }
         if(this.belongToChampDeMovement){
+            
             g.setColor(Color.decode("#3399CC"));
             g.fillRect(0, 0, getWidth(), getHeight());
         }
@@ -162,12 +163,17 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
     public void setControl(Controlleur c)
     {
     	this.controlleur  =c;
+    	controlleur.onStateRealized(this);
     }
 
     @Override
     public void colourCase(Coordonnee c) {
-        if (c.equals(this.coordonee))
+
+        if (c.equals(this.coordonee)){
             this.belongToChampDeMovement=true;
+            System.out.println("coord" +c);
+            System.out.println(belongToChampDeMovement);
+        }
     }
 
     @Override

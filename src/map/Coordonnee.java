@@ -45,6 +45,10 @@ public class Coordonnee {
 		return y;
 	}
 	
+	public boolean equals(Coordonnee c){
+	    return (y==c.y&&x==c.x);
+	}
+	
 	public String toString(){
 	    return "("+x+";"+y+")";
 	}
