@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 import affichage.ChoixUnite;
 import affichage.Frame;
 import affichage.PanelInformations;
@@ -101,6 +103,10 @@ public class Controlleur {
 		deuxiemeClick = true;
 	}
 	
+	public void partieGagnee(Joueur j) {
+		new JOptionPane().showMessageDialog(f, "Partie gagnee", "Le joueur " + j.getNom() + " gagne !", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 	public boolean deplacer (Joueur j, Coordonnee org, Coordonnee dst) {
 		System.out.println(org.getY());
 		System.out.println(dst.getY());
@@ -113,7 +119,17 @@ public class Controlleur {
 		Cellule cellOrg = map.getCellule(org),
 				cellDst = map.getCellule(dst);
 		
-		if (!cellDst.getTerrain().isPraticable() || (cellDst.getUnit() != null && !combat(cellOrg, cellDst)))
+		if (!cellDst.getTerrain().isPraticable())
+			return false;
+		
+		if (cellDst.contientBatiment()) {
+			// La cellule contiend le chateau ennemi
+			partieGagnee(j);
+			
+			cellDst.setBatiment(null);
+			
+		}
+		else if(cellDst.getUnit() != null && !combat(cellOrg, cellDst))
 			return false;
 		
 		// Bon pour deplacement
