@@ -160,12 +160,13 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
     public void setControl(Controlleur c)
     {
     	this.controlleur  =c;
-    	controlleur.onStateRealized(this);
+    	controlleur.onStateRealized(this, coordonee);
     }
 
+    
     @Override
     public void colourCase(Coordonnee c) {
-
+        System.out.println(coordonee+"  coord  " +c);
         if (c.equals(this.coordonee)){
             this.belongToChampDeMovement=true;
             System.out.println("coord" +c);

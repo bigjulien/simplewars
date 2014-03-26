@@ -2,9 +2,11 @@ package main;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
 
 
 import event.ColourCaseListener;
@@ -46,7 +48,7 @@ public class Controlleur {
 	Joueur j2 = new Joueur ("Joueur 2");
 	
 	private int joueurCourrant;
-	public ColourCaseListener colourCaseListener;
+	public HashMap<Coordonnee,ColourCaseListener> colourCaseListener=new HashMap();
 	private static final String CONFIGPATH = "Map0";
 	
 	// Dit si l'on affiche ou non les cases de deplacemenent
@@ -70,8 +72,10 @@ public class Controlleur {
 		this.run = true;
 	}
 	
-	public void onStateRealized(ColourCaseListener l) {
-	    this.colourCaseListener = l;
+	
+	
+	public void onStateRealized(ColourCaseListener l,Coordonnee c) {
+	    this.colourCaseListener.put(c,l);
 	}
 	
 	
@@ -261,7 +265,7 @@ public class Controlleur {
 	    Iterator<Coordonnee> it = listeCasesColoriees.iterator();
 	    while (it.hasNext()) {
 	           Coordonnee coordonnee = it.next();
-	           colourCaseListener.colourCase(coordonnee);
+	           colourCaseListener.get(coordonnee).colourCase(coordonnee);
 	    }   
 	    }
 	}
@@ -274,7 +278,7 @@ public class Controlleur {
         Iterator<Coordonnee> it = listeCasesColoriees.iterator();
         while (it.hasNext()) {
                Coordonnee coordonnee = it.next();
-               this.colourCaseListener.colourCase(coordonnee);
+               colourCaseListener.get(coordonnee).decolourCase(coordonnee);
         }   
         }
     }
