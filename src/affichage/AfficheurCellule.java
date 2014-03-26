@@ -120,7 +120,7 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
 
         	if(!controlleur.deuxiemeClick && this.cellule.contientUnite())
         	{
-
+        		if (cellule.getUnit().isDejaDeplace()) return;
         	    controlleur.getRespectfullCases(coordonee);
         	    controlleur.colourAllCorrectCase();
         		controlleur.prepareDeplacement(controlleur.getJoueurCourant(), coordonee);

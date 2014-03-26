@@ -149,6 +149,7 @@ public class Controlleur {
 		// Bon pour deplacement
 		cellDst.setUnit(cellOrg.getUnit());
 		cellOrg.setUnit(null);
+		cellDst.getUnit().setDejaDeplace(true);
 		deuxiemeClick = false;
 		return true;
 	}
