@@ -2,8 +2,12 @@ package main;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
+
+import event.ColourCaseListener;
 
 import javax.swing.JOptionPane;
 
@@ -13,6 +17,7 @@ import affichage.PanelInformations;
 import joueur.Joueur;
 import map.Chateau;
 import map.Map;
+
 
 
 import unit.Archer;
@@ -41,9 +46,13 @@ public class Controlleur {
 	Joueur j2 = new Joueur ("Joueur 2");
 	
 	private int joueurCourrant;
-		
+	public ColourCaseListener colourCaseListener;
 	private static final String CONFIGPATH = "Map0";
-		
+	
+	// Dit si l'on affiche ou non les cases de deplacemenent
+	public boolean displayChamp=false;
+	
+	private ArrayList<Coordonnee> listeCasesColoriees=new ArrayList<Coordonnee>();
 	public Joueur getJoueurCourant() {
 		return joueurs.get(joueurCourrant);
 	}
@@ -60,6 +69,11 @@ public class Controlleur {
 		this.rand = new Random();
 		this.run = true;
 	}
+	
+	void onStateRealized(ColourCaseListener l) {
+	    this.colourCaseListener = l;
+	}
+	
 	
 	public void joueurSuivant() {
 	    joueurCourrant = (joueurCourrant + 1) % joueurs.size();
@@ -218,6 +232,7 @@ public class Controlleur {
 		}
 		return false;
 	}
+
 	
 	/**
 	 * Fonction permettant de recuperer toutes les coordonnes de la grille accessible a partir d'une coordonne, pour un deplacement simple
@@ -225,16 +240,46 @@ public class Controlleur {
 	 * @param a
 	 * @return
 	 */
-	public ArrayList<Coordonnee> getRespectfullCases(Coordonnee a){
-	    ArrayList<Coordonnee> listeDeCellules=new ArrayList();
+	public void getRespectfullCases(Coordonnee a){
+	    
+	    listeCasesColoriees.clear();
 	    for (int i=0;i<map.getGrille().length;i++){
 	        for (int j=0;j<map.getGrille()[i].length;j++){
-	            if (respecteLimiteDeplacement(a,map.getGrille()[i][j].getCoordonnee()))
-	                listeDeCellules.add(map.getGrille()[i][j].getCoordonnee());
+	            if (respecteLimiteDeplacement(a,map.getGrille()[i][j].getCoordonnee())){
+	                listeCasesColoriees.add(map.getGrille()[i][j].getCoordonnee());
+	            }
 	        }
 	    }
-	    return listeDeCellules;
+
 	}
+	
+	/**
+	 * Colorie toutes les cases etant dans le tableau listeCasesColoriees
+	 */
+	public void colourAllCorrectCase (){
+	    if (listeCasesColoriees!=null){
+	    Iterator<Coordonnee> it = listeCasesColoriees.iterator();
+	    while (it.hasNext()) {
+	           Coordonnee coordonnee = it.next();
+	           System.out.println(coordonnee);
+	           colourCaseListener.colourCase(coordonnee);
+	    }   
+	    }
+	}
+	
+	   /**
+     * Colorie toutes les cases etant dans le tableau listeCasesColoriees
+     */
+    public void unColourAllCorrectCase (){
+        if (listeCasesColoriees!=null){
+        Iterator<Coordonnee> it = listeCasesColoriees.iterator();
+        while (it.hasNext()) {
+               Coordonnee coordonnee = it.next();
+               this.colourCaseListener.colourCase(coordonnee);
+        }   
+        }
+    }
+    
 	
 	public void initMap() {
 		map = new Map(CONFIGPATH);
