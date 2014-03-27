@@ -82,6 +82,7 @@ public class Controlleur {
 	public void joueurSuivant() {
 	    joueurCourrant = (joueurCourrant + 1) % joueurs.size();
 	    getJoueurCourant().resetDejaDeplace();
+	    getJoueurCourant().getChateau().setProduced(false);
 	}
 	
 	public void initJoueurs() {
@@ -110,6 +111,9 @@ public class Controlleur {
 	}
 	
 	public void creation () {
+	    if (!getJoueurCourant().getChateau().canProduce())
+	        return;
+	        
 		ChoixUnite choix = new ChoixUnite(this);	
 	}
 	
@@ -295,8 +299,10 @@ public class Controlleur {
 	private void creerUnit(Joueur joueur, Unite unit) {
 		try
 		{
-			map.getVoisinLibre(joueur.getChateau().getCell()).setUnit(unit);	    
+		    map.getVoisinLibre(joueur.getChateau().getCell()).setUnit(unit);	    
 			joueur.addUnit(unit);
+	        joueur.getChateau().setProduced(true);
+
 		}
 		catch(NullPointerException e)
 		{

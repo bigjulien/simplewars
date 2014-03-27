@@ -64,7 +64,7 @@ public class ChoixUnite extends JFrame implements ActionListener{
 		
 		else if (arg0.getSource() == s) 
 		    c.creerPiquier(c.getJoueurCourant());
-		
+				
 		dispose();
 		
 	}

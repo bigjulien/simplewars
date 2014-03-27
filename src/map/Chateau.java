@@ -10,13 +10,22 @@ import joueur.Joueur;
 public class Chateau extends Batiment {
 
 	private static String IMAGEPATH = "Units/chateau.png";
-
+	
+	private boolean produced;
 
 	public Chateau (Cellule cell) {
 	    setBufferedImage(IMAGEPATH);
         this.cell = cell;
+        this.produced = false;
     }
     
+	public boolean canProduce() {
+	    return !produced;
+	}
+	
+	public void setProduced(boolean produced) {
+	    this.produced = produced;
+	}
 	
 	public Chateau (Joueur j) {
 		this.joueur = j;
@@ -38,7 +47,6 @@ public class Chateau extends Batiment {
 	public Cellule getCell() {
 	    return cell;
 	}
-	
 	
 	
 	public String toString(){
