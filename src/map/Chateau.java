@@ -12,11 +12,11 @@ public class Chateau extends Batiment {
 	private static String IMAGEPATH = "Units/chateau.png";
 	
 	private boolean produced;
-
+	
 	public Chateau (Cellule cell) {
 	    setBufferedImage(IMAGEPATH);
-        this.cell = cell;
         this.produced = false;
+        this.cell = cell;
     }
     
 	public boolean canProduce() {
