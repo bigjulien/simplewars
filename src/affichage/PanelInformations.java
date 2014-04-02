@@ -1,5 +1,8 @@
 package affichage;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -9,7 +12,9 @@ import java.awt.event.MouseListener;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.EventListenerList;
@@ -28,10 +33,10 @@ import main.Controlleur;
  */
 public class PanelInformations extends JPanel implements JoueurChangedListener {
 
-    private JButton tourSuivant;
+    private JButton tourSuivant,aide;
     private JLabel joueurActuel;
     private JLabel points;
-    private Dimension dimension = new Dimension(100,100);
+    private Dimension dimension = new Dimension(300,300);
     
     private Controlleur control;
     
@@ -41,20 +46,39 @@ public class PanelInformations extends JPanel implements JoueurChangedListener {
         listenersChangementJoueur = new EventListenerList();
         
         tourSuivant = new JButton("suivant");
+        aide = new JButton("aide");
+        aide.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                aide();
+            }
+
+			private void aide() {
+				JFrame aide = new JFrame();
+				//aide.add()
+				/*JLabel image = new JLabel( new ImageIcon( "mon_image.jpg"));
+				pane.setLayout(new BorderLayout, CENTER);
+				pane.add(image);*/
+				
+			}
+        });
+        
+        
         tourSuivant.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 changerJoueur();
             }
         });
-        
+        tourSuivant.setFont(new Font("sansserif",Font.BOLD,50));
         joueurActuel = new JLabel("Joueur 1");
+        joueurActuel.setFont(new Font("sansserif",Font.BOLD,50));
         points = new JLabel("12");
+        aide.setFont(new Font("sansserif",Font.BOLD,50));
+        setLayout(new BorderLayout());
         
-        setLayout(new GridLayout(1, 3));
+        add(joueurActuel,BorderLayout.CENTER);
         
-        add(joueurActuel);
-        add(points);
-        add(tourSuivant);
+        add(tourSuivant,BorderLayout.NORTH);
+        add(aide,BorderLayout.SOUTH);
          
     }
     
