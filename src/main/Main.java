@@ -1,6 +1,7 @@
 package main;
 
 import map.Map;
+import map.MapReader;
 import affichage.Frame;
 import affichage.PanelCarte;
 import affichage.PanelInformations;
@@ -16,7 +17,8 @@ public class Main {
     
 	public static void main(String[] args)
 	{
-		Map map = new Map(CONFIGPATH);
+		MapReader mapReader = new MapReader();
+		Map map = mapReader.readMap(CONFIGPATH);
 		
 		PanelCarte panelCarte = new PanelCarte(map);
 		PanelInformations panelInfo = new PanelInformations();

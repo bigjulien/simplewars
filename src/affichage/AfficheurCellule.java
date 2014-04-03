@@ -24,19 +24,19 @@ import unit.*;
  */
 public class AfficheurCellule extends JPanel implements MouseListener,ColourCaseListener{
     private Color color=Color.BLACK;
-    private Coordonnee coordonee;
+    private Coordonnee coordonnee;
     private Cellule cellule;
     Controlleur controlleur;
     private boolean belongToChampDeMovement=false;
     private boolean onOver=false;
-    
-   private final int BORDERBOLD =4;
+        
+    private final int BORDERBOLD = 4;
 
     public AfficheurCellule(Cellule cellule) {
         this.addMouseListener(this);
         this.cellule=cellule;
         try {
-        this.coordonee=cellule.getCoordonnee();
+        this.coordonnee=cellule.getCoordonnee();
         }
         catch (NullPointerException e){
             System.err.println("[AfficheurCellule] Vous essayez d'afficher une celule ne contenant pas de coordonees");
@@ -130,33 +130,7 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
     }
     
     public void mouseClicked(MouseEvent arg0) {
-        // Si on clique sur une cellule qui a un batiment au premier clic
-        if(cellule.contientBatiment() && cellule.getBatiment().getJoueur().equals(controlleur.getJoueurCourant()))
-        {
-            // si le batiment appartient au joueur
-            if (cellule.getBatiment().getJoueur().equals(controlleur.getJoueurCourant())){
-                controlleur.creation();
-            }
-            controlleur.unColourAllCorrectCase();
-        }
-        else
-        {
-            
-        	if(!controlleur.deuxiemeClick && this.cellule.contientUnite())
-        	{
-        		if (cellule.getUnit().isDejaDeplace()) return;
-        	    controlleur.getRespectfullCases(coordonee);
-        	    controlleur.colourAllCorrectCase();
-        		controlleur.prepareDeplacement(controlleur.getJoueurCourant(), coordonee);
-
-        	}
-        	else
-        	{
-        	    controlleur.unColourAllCorrectCase();
-        	    controlleur.deplacer(controlleur.getJoueurCourant(),controlleur.memoire , coordonee);
-        	}
-        }
-
+    	controlleur.click(coordonnee);
     }
 
     @Override
@@ -169,29 +143,25 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
         onOver=false;
     }
 
-    @Override
     public void mousePressed(MouseEvent arg0) {
-        // TODO Auto-generated method stub
         
     }
 
-    @Override
     public void mouseReleased(MouseEvent arg0) {
-        // TODO Auto-generated method stub
         
     }
     
     public void setControl(Controlleur c)
     {
     	this.controlleur  =c;
-    	controlleur.onStateRealized(this, coordonee);
+    	controlleur.onStateRealized(this, coordonnee);
     }
 
     
     @Override
     public void colourCase(Coordonnee c) {
-        System.out.println(coordonee+"  coord  " +c);
-        if (c.equals(this.coordonee)){
+        System.out.println(coordonnee+"  coord  " +c);
+        if (c.equals(this.coordonnee)){
             this.belongToChampDeMovement=true;
             System.out.println("coord" +c);
             System.out.println(belongToChampDeMovement);
@@ -200,7 +170,7 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
 
     @Override
     public void decolourCase(Coordonnee c) {
-        if (c.equals(this.coordonee))
+        if (c.equals(this.coordonnee))
             this.belongToChampDeMovement=false;
     }
 
