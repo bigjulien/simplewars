@@ -86,7 +86,7 @@ public class Controlleur {
 			Joueur joueur = new Joueur ("Joueur " + (i + 1));
 			
 			// un joueur sur deux a des unitees regardant a gauche
-			joueur.setGauche((i % 2) == 0);
+			joueur.setGauche((i % 2) != 0);
 			joueur.setChateau(map.getChateau(i));
 			
 			map.getChateau(i).setJoueur(joueur);
@@ -313,10 +313,7 @@ public class Controlleur {
 	public void click(Coordonnee coordonnee) {
 		 // Si on clique sur une cellule qui a un batiment au premier clic
         Cellule cellule = getCellule(coordonnee);
-		
-        System.out.println(cellule.getCoordonnee());
-        
-        System.out.println(cellule.getBatiment().getJoueur());
+		        
 		if(cellule.contientBatiment() && cellule.getBatiment().getJoueur().equals(getJoueurCourant()))
         {
             // si le batiment appartient au joueur
