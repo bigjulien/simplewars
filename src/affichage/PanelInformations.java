@@ -53,11 +53,9 @@ public class PanelInformations extends JPanel implements JoueurChangedListener {
             }
 
 			private void aide() {
-				JFrame aide = new JFrame();
-				//aide.add()
-				/*JLabel image = new JLabel( new ImageIcon( "mon_image.jpg"));
-				pane.setLayout(new BorderLayout, CENTER);
-				pane.add(image);*/
+				
+				
+				aide.setVisible(true);
 				
 			}
         });
@@ -68,6 +66,20 @@ public class PanelInformations extends JPanel implements JoueurChangedListener {
                 changerJoueur();
             }
         });
+        
+        aide.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                JFrame aide = new JFrame();
+        		aide.setSize(800,1000);
+        		JPanel jp = new JPanel();
+        		//aide.add()
+        		JLabel image = new JLabel(new ImageIcon("Units/explic.jpg"));
+        		jp.add(image);
+        		aide.add(jp);
+        		aide.setVisible(true); 
+            }
+        });
+        
         tourSuivant.setFont(new Font("sansserif",Font.BOLD,50));
         joueurActuel = new JLabel("Joueur 1");
         joueurActuel.setFont(new Font("sansserif",Font.BOLD,50));
@@ -79,7 +91,8 @@ public class PanelInformations extends JPanel implements JoueurChangedListener {
         
         add(tourSuivant,BorderLayout.NORTH);
         add(aide,BorderLayout.SOUTH);
-         
+		
+
     }
     
     public void changed(JoueurChangedEvent e) {
