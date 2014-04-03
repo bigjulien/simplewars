@@ -20,7 +20,7 @@ public abstract class Terrain {
 	
 	public abstract String getPathImage();
 	
-	public Terrain (boolean particable){
+	public Terrain (boolean praticable){
 	    this.praticable=praticable;
         
         String path =  getPathImage();

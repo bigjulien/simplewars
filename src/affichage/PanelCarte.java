@@ -9,8 +9,11 @@ import map.Map;
 import javax.swing.JPanel;
 
 public class PanelCarte extends JPanel {
-	private Controlleur c;
-    private Map map;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
     private int largeur,hauteur;
     private AfficheurCellule[][] tableauDeCellules;
     
@@ -19,7 +22,7 @@ public class PanelCarte extends JPanel {
      * @param map
      */
     public PanelCarte(Map map){
-        this.map=map;
+        
         
         largeur = map.getLargeur();
         hauteur = map.getHauteur();
@@ -38,7 +41,7 @@ public class PanelCarte extends JPanel {
     }
     
     public void setControl (Controlleur c) {
-        this.c = c;
+      
         
         //Propagation du controlleur aux cellules
         for (int i = 0; i < tableauDeCellules.length ; i++) {

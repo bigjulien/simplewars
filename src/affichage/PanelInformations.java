@@ -1,29 +1,19 @@
 package affichage;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.Dimension;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.EventListenerList;
-
 import joueur.Joueur;
-
 import event.JoueurChangedEvent;
 import event.JoueurChangedListener;
-
 import main.Controlleur;
 
 /**
@@ -33,9 +23,12 @@ import main.Controlleur;
  */
 public class PanelInformations extends JPanel implements JoueurChangedListener {
 
-    private JButton tourSuivant,aide;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JButton tourSuivant,aide;
     private JLabel joueurActuel;
-    private JLabel points;
     private Dimension dimension = new Dimension(300,300);
     
     private Controlleur control;
@@ -83,7 +76,6 @@ public class PanelInformations extends JPanel implements JoueurChangedListener {
         tourSuivant.setFont(new Font("sansserif",Font.BOLD,50));
         joueurActuel = new JLabel("Joueur 1");
         joueurActuel.setFont(new Font("sansserif",Font.BOLD,50));
-        points = new JLabel("12");
         aide.setFont(new Font("sansserif",Font.BOLD,50));
         setLayout(new BorderLayout());
         

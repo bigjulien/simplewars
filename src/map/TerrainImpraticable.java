@@ -13,7 +13,6 @@ public class TerrainImpraticable extends Terrain {
 	
 	public TerrainImpraticable(String pathImage){
         super(PRATICABLE);
-        pathImage=pathImage;
         setBufferedImage(pathImage);
     }
 	
