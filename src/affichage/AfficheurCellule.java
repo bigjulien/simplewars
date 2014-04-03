@@ -7,7 +7,9 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
@@ -67,23 +69,27 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
         if(cellule.contientTerrain()){
             g.setColor(cellule.getTerrain().getCouleur());
             g.fillRect(0, 0, getWidth(), getHeight());
-            setBorder(BorderFactory.createLineBorder(Color.black,BORDERBOLD));
+            try {
+                BufferedImage lel = cellule.getTerrain().getBufferedImage();
+                g.drawImage(lel,0,0, getWidth(), getHeight(),this);
+
+            }catch(Exception e){
+                System.err.println("image batiment introuvable");
+            }
+            
+            setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
            
         }
         if(this.belongToChampDeMovement){
-            
-            g.setColor(Color.decode("#3399CC"));
-            g.fillRect(0, 0, getWidth(), getHeight());
+            setImage("Units/selectajaune.png",g);
         }
         if(this.onOver){
-            g.setColor(Color.BLUE);
-            g.fillRect(0, 0, getWidth(), getHeight());
+            setImage("Units/selecta.png",g);
         }
         if(cellule.contientBatiment()){
             Batiment u =  cellule.getBatiment();
             try {
                 BufferedImage bI=u.getBufferedImage();
-
                 g.drawImage(bI,2*BORDERBOLD, 2*BORDERBOLD, getWidth()-4*BORDERBOLD, getHeight()-4*BORDERBOLD,this);
 
             }catch(Exception e){
@@ -92,7 +98,15 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
         }
         
         if(cellule.contientUnite()){
+            
             Unite u = cellule.getUnit();
+            if (u.getJoueur().equals(controlleur.getJoueurCourant())){
+                   setImage("Units/selectaalliedi.png",g);
+            }
+            else {
+                setImage("Units/selectaennemi.png",g);
+            }
+            
             try {
                 BufferedImage bI=u.getBufferedImage();
 
@@ -104,6 +118,17 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
         }
     }
     
+    
+	public void setImage(String chemin,Graphics g){
+	    try {
+	        BufferedImage champDeMouvement = ImageIO.read(new File(chemin));
+	        g.drawImage(champDeMouvement,0,0, getWidth(), getHeight(),this);
+	
+	    }catch(Exception e){
+	        System.err.println("image introuvable "+chemin);
+	    }
+	    
+	}
     
     public void mouseClicked(MouseEvent arg0) {
     	controlleur.click(coordonnee);

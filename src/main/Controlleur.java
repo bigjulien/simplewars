@@ -311,10 +311,17 @@ public class Controlleur {
 	}
 	
 	public void click(Coordonnee coordonnee) {
+<<<<<<< HEAD
 		 // Si on clique sur une cellule qui a un batiment au premier clic
         Cellule cellule = getCellule(coordonnee);
 		        
 		if(cellule.contientBatiment() && cellule.getBatiment().getJoueur().equals(getJoueurCourant()))
+=======
+		Cellule cellule = getCellule(coordonnee);
+		
+        // Si on clique sur une cellule qui a un batiment au premier clic
+        if(cellule.contientBatiment() && cellule.getBatiment().getJoueur().equals(getJoueurCourant()))
+>>>>>>> architecture_merge
         {
             // si le batiment appartient au joueur
             if (cellule.getBatiment().getJoueur().equals(getJoueurCourant())){
@@ -324,6 +331,7 @@ public class Controlleur {
         }
         else
         {
+<<<<<<< HEAD
         	System.out.println(cellule.contientBatiment());
         	if (cellule.contientUnite()) {
 	        	if(!deuxiemeClick)
@@ -343,5 +351,22 @@ public class Controlleur {
         }
 
 	}
+=======
+            
+        	if(!deuxiemeClick && cellule.contientUnite())
+        	{
+        		if (cellule.getUnit().isDejaDeplace()) return;
+        	    getRespectfullCases(coordonnee);
+        	    colourAllCorrectCase();
+        		prepareDeplacement(getJoueurCourant(), coordonnee);
+>>>>>>> architecture_merge
 
+        	}
+        	else
+        	{
+        	    unColourAllCorrectCase();
+        	    deplacer(getJoueurCourant(),memoire , coordonnee);
+        	}
+        }
+	}
 }
