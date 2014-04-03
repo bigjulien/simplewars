@@ -1,10 +1,8 @@
 package main;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Random;
 
 
@@ -17,7 +15,6 @@ import affichage.ChoixUnite;
 import affichage.Frame;
 import affichage.PanelInformations;
 import joueur.Joueur;
-import map.Chateau;
 import map.Map;
 
 
@@ -36,40 +33,35 @@ import map.Coordonnee;
  * 
  */
 public class Controlleur {
+	// Nombre de joueurs fixe
+	private static final int NBJOUEURS = 2;
+	
 	private Map map;
 	private Random rand;
-	Frame f;
-	private boolean run;
-	public boolean deuxiemeClick =false;
-	public Coordonnee memoire ;
-	public static Infos infos = new Infos() ;
-	List<Joueur> joueurs;
-	Joueur j1 = new Joueur ("Joueur 1");
-	Joueur j2 = new Joueur ("Joueur 2");
+	private Frame f;
+	private boolean deuxiemeClick =false;
+	private Coordonnee memoire ;
+	private static Infos infos = new Infos() ;
+	
+	private Joueur[] joueurs;
 	
 	private int joueurCourrant;
-	public HashMap<Coordonnee,ColourCaseListener> colourCaseListener=new HashMap();
-	private static final String CONFIGPATH = "Map0";
-	
-	// Dit si l'on affiche ou non les cases de deplacemenent
-	public boolean displayChamp=false;
+	private HashMap <Coordonnee,ColourCaseListener> colourCaseListener = new HashMap<>();
 	
 	private ArrayList<Coordonnee> listeCasesColoriees=new ArrayList<Coordonnee>();
 	public Joueur getJoueurCourant() {
-		return joueurs.get(joueurCourrant);
+		return joueurs[joueurCourrant];
 	}
 	
 	public Controlleur(Map map, Frame frame, PanelInformations panelInfo) {
         this.map = map;
 		initJoueurs();
-		initChateaux();
 		f = frame;
 		
 		panelInfo.addJoueurChangedListener(panelInfo);
 		
 		// Ready to play
 		this.rand = new Random();
-		this.run = true;
 	}
 	
 	
@@ -80,41 +72,37 @@ public class Controlleur {
 	
 	
 	public void joueurSuivant() {
-	    joueurCourrant = (joueurCourrant + 1) % joueurs.size();
+	    joueurCourrant = (joueurCourrant + 1) % joueurs.length;
 	    getJoueurCourant().resetDejaDeplace();
 	    getJoueurCourant().getChateau().setProduced(false);
 	}
 	
 	public void initJoueurs() {
-		joueurs = new ArrayList<>();
+		joueurs = new Joueur[NBJOUEURS];
 		
 		// Deux joueur dans cette version du jeu
 		
-		j1.setGauche(false);
-		j2.setGauche(true);
-		joueurs.add(j1);
-		joueurs.add(j2);
+		for (int i = 0; i < joueurs.length; ++i) {
+			Joueur joueur = new Joueur ("Joueur " + (i + 1));
+			
+			// un joueur sur deux a des unitees regardant a gauche
+			joueur.setGauche((i % 2) != 0);
+			joueur.setChateau(map.getChateau(i));
+			
+			map.getChateau(i).setJoueur(joueur);
+			
+			joueurs[i] = joueur;
+		}
 		
+		// Initialisation du premier joueur
 		joueurCourrant = 0;
-	}
-	
-	public void initChateaux() {
-		// Placer chaque chateau sur la carte et l'affecter a un joueur
-		Chateau a = map.getChateau1();
-		Chateau b = map.getChateau2();
-		a.setJoueur(j1);
-		b.setJoueur(j2);
-		j1.setChateau(a);
-		j2.setChateau(b);
-
-		
 	}
 	
 	public void creation () {
 	    if (!getJoueurCourant().getChateau().canProduce())
 	        return;
 	        
-		ChoixUnite choix = new ChoixUnite(this);	
+		new ChoixUnite(this);	
 	}
 	
 	
@@ -124,7 +112,7 @@ public class Controlleur {
 	}
 	
 	public void partieGagnee(Joueur j) {
-		new JOptionPane().showMessageDialog(f, "Partie gagnee", "Le joueur " + j.getNom() + " gagne !", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(f, "Partie gagnee", "Le joueur " + j.getNom() + " gagne !", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public boolean deplacer (Joueur j, Coordonnee org, Coordonnee dst) {
@@ -304,21 +292,14 @@ public class Controlleur {
         }   
         }
     }
-    
-	
-	public void initMap() {
-		map = new Map(CONFIGPATH);
-	}
-	
-	
 	
 	private void creerUnit(Joueur joueur, Unite unit) {
 		try
 		{
-		    map.getVoisinLibre(joueur.getChateau().getCell()).setUnit(unit);	    
+			map.getVoisinLibre(joueur.getChateau().getCell()).setUnit(unit);	
 			joueur.addUnit(unit);
-	        joueur.getChateau().setProduced(true);
-
+			joueur.getChateau().setProduced(true);
+			
 		}
 		catch(NullPointerException e)
 		{
@@ -340,19 +321,38 @@ public class Controlleur {
 	    creerUnit(joueur, new Piquier(joueur));
 	}
 
-	
-	private boolean Obstacle(Cellule carr) {
-		if(carr.getTerrain().isPraticable())
-		{
-			return true;
-		}
-		return false;
-	}
-
 	private Cellule getCellule(Coordonnee a)
 	{
 		Cellule[][] g = map.getGrille();
 		return g[a.getX()][a.getY()];
 	}
+	
+	public void click(Coordonnee coordonnee) {
+		Cellule cellule = getCellule(coordonnee);
+		
+        // Si on clique sur une cellule qui a un batiment au premier clic
+        if(cellule.contientBatiment() && cellule.getBatiment().getJoueur().equals(getJoueurCourant()))
+        {
+            // si le batiment appartient au joueur
+            if (cellule.getBatiment().getJoueur().equals(getJoueurCourant())){
+                creation();
+            }
+            unColourAllCorrectCase();
+        }
+        else if (cellule.contientUnite() && !deuxiemeClick)
+        {
+        	
+    		if (cellule.getUnit().isDejaDeplace()) return;
+    	    getRespectfullCases(coordonnee);
+    	    colourAllCorrectCase();
+    		prepareDeplacement(getJoueurCourant(), coordonnee);
 
+    	}
+    	else
+    	{
+    	    unColourAllCorrectCase();
+    	    deplacer(getJoueurCourant(), memoire , coordonnee);
+    	}
+
+	}
 }

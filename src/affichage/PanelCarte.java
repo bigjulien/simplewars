@@ -3,6 +3,7 @@ package affichage;
 import java.awt.GridLayout;
 
 import main.Controlleur;
+import map.Coordonnee;
 import map.Map;
 
 import javax.swing.JPanel;
@@ -28,7 +29,7 @@ public class PanelCarte extends JPanel {
         setLayout(new GridLayout(largeur,hauteur));
         for (int i = 0; i <largeur ; i++) {
             for (int j = 0; j <largeur ; j++){
-                AfficheurCellule aC = new AfficheurCellule(map.getGrille()[i][j]);
+                AfficheurCellule aC = new AfficheurCellule(map.getCellule(new Coordonnee(i,j)));
                 tableauDeCellules[i][j] = aC;
                 add(aC);
             }
