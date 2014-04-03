@@ -2,15 +2,9 @@ package affichage;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import main.Controlleur;
 import map.Map;
 
 /**
@@ -21,8 +15,11 @@ import map.Map;
  */
 public class Frame extends JFrame {
 
-private Map map;
-private JPanel panelCarte;
+
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 private PanelInformations panelInformations;
 
 public Frame(Map map, PanelCarte panelCarte, PanelInformations panelInfo) {
@@ -37,7 +34,7 @@ public Frame(Map map, PanelCarte panelCarte, PanelInformations panelInfo) {
     setUndecorated(false);
     setBackground(Color.white);
 
-    this.panelCarte = panelCarte;
+
     //panelCarte.setPreferredSize(new Dimension(100,100));
     panelInformations = panelInfo;
     this.add(panelCarte,BorderLayout.CENTER);

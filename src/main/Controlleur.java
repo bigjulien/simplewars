@@ -216,14 +216,14 @@ public class Controlleur {
 			// Alors il faudrait que Y1-Y2 soit plus petit que le ddéplacement max. 
 			if(Math.abs(a.getY()-b.getY())<=infos.getMAX_DEPLACEMENT())
 			{
-				for(int i=a.getY();i<=a.getY()+infos.getMAX_DEPLACEMENT();i++)
+				/*for(int i=a.getY();i<=a.getY()+infos.getMAX_DEPLACEMENT();i++)
 				{
 					Coordonnee cn=new Coordonnee(a.getX(),i) ;
 					if(!(getCellule(cn).estVideetPrat()))
 					{
 						return false;
 					}
-				}
+				}*/
 				return true;
 			}
 		}
@@ -293,6 +293,7 @@ public class Controlleur {
         }
     }
 	
+	@SuppressWarnings("static-access")
 	private void creerUnit(Joueur joueur, Unite unit) {
 		try
 		{

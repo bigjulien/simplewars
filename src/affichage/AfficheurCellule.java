@@ -1,7 +1,7 @@
 package affichage;
 
-import java.awt.BasicStroke;
-import java.awt.Canvas;
+
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -23,8 +23,12 @@ import unit.*;
  *
  */
 public class AfficheurCellule extends JPanel implements MouseListener,ColourCaseListener{
-    private Color color=Color.BLACK;
-    private Coordonnee coordonnee;
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Coordonnee coordonnee;
     private Cellule cellule;
     Controlleur controlleur;
     private boolean belongToChampDeMovement=false;

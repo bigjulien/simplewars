@@ -14,7 +14,6 @@ public class TerrainPraticable extends Terrain {
 	
 	   public TerrainPraticable(String pathImage){
 	        super(PRATICABLE);
-	        pathImage=pathImage;
 	        setBufferedImage(pathImage);
 	    }
 	
