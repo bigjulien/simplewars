@@ -280,14 +280,15 @@ public class Controlleur {
 	private void creerUnit(Joueur joueur, Unite unit) {
 		try
 		{
-		    map.getVoisinLibre(joueur.getChateau().getCell()).setUnit(unit);	    
+			map.getVoisinLibre(joueur.getChateau().getCell()).setUnit(unit);	
 			joueur.addUnit(unit);
-	        joueur.getChateau().setProduced(true);
-
+			joueur.getChateau().setProduced(true);
+			
 		}
 		catch(NullPointerException e)
 		{
-			JOptionPane.showMessageDialog(null, "<HTML> <FONT SIZE=200><B>Plus de place</B></HTML>", "", JOptionPane.WARNING_MESSAGE);
+			JOptionPane jop = new JOptionPane();
+			jop.showMessageDialog(null, "<HTML> <FONT SIZE=200><B>Plus de place</B></HTML>", "", JOptionPane.WARNING_MESSAGE);
 			
 		}
 	}
