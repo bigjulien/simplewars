@@ -32,7 +32,7 @@ public class ChoixUnite extends JFrame implements ActionListener{
 	{
 	    this.setTitle("Choix d'unité");
 	    this.setSize(700, 700);
-	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    
 	    this.setLocationRelativeTo(null);
 	    setResizable(false);
 	    n.setFont(new Font(Font.DIALOG, Font.BOLD, 80));
