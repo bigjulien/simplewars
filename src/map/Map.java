@@ -1,5 +1,8 @@
 package map;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Gere les informations de la carte
@@ -52,58 +55,46 @@ public class Map {
     public Cellule[][] getGrille(){
         return grille;
     }
+    
+    private boolean isValid(Coordonnee coordonnee) {
+    	int x = coordonnee.getX(),
+    		y = coordonnee.getY();
+    	
+    	return 0 <= x && x < largeur && 0 <= y && y < hauteur; 
+    }
+    
+    public List<Cellule> getVoisins(Cellule cell) {
+    	List<Cellule> voisins = new ArrayList<>();
+    	Coordonnee coordonnee = cell.getCoordonnee();
+    	
+    	int x = coordonnee.getX(),
+    		y = coordonnee.getY();
+    	
+    	List<Coordonnee> coordonneeVoisines = new ArrayList<>();
+    	coordonneeVoisines.add(new Coordonnee(x + 1, y));
+    	coordonneeVoisines.add(new Coordonnee(x - 1, y));
+    	coordonneeVoisines.add(new Coordonnee(x, y -1));
+    	coordonneeVoisines.add(new Coordonnee(x, y + 1));
+    	
+    	for (Coordonnee c : coordonneeVoisines) {
+    		if (isValid(c)) {
+    			Cellule voisin = getCellule(c);
+        		
+    			if (voisin.getTerrain().isPraticable())
+    				voisins.add(voisin);
+    		}
+    	}
+    	
+    	return voisins;
+    }
 
-	public Cellule getVoisinLibre(Cellule cell) {
-		Coordonnee coord =cell.getCoordonnee();
-
-		try{
-		if(grille[coord.getX()+1][coord.getY()].estVideetPrat() )
-		{
-		return grille[coord.getX()+1][coord.getY()];
+	public Cellule getVoisinLibre(Cellule cell) {				
+		for (Cellule c : getVoisins(cell)) {
+			if (!c.contientUnite())
+				return c;
 		}
-		}
-		catch(ArrayIndexOutOfBoundsException e)
-		{
-		System.out.print("Plus de place");
-		}
-
-
-		try
-		{
-		if(grille[coord.getX()][coord.getY()+1].estVideetPrat())
-		{
-		return grille[coord.getX()][coord.getY()+1];
-		}
-		}
-		catch(ArrayIndexOutOfBoundsException e)
-		{
-		System.out.print("Plus de place");
-		}
-
-		try
-		{
-		if(grille[coord.getX()-1][coord.getY()].estVideetPrat())
-		{
-		return grille[coord.getX()-1][coord.getY()];
-		}
-		}
-		catch(ArrayIndexOutOfBoundsException e){
-		System.out.print("Plus de place");
-		}
-
-		try
-		{
-		if(grille[coord.getX()][coord.getY()-1].estVideetPrat())
-		{
-		return grille[coord.getX()][coord.getY()-1];
-		}
-		}
-		catch(ArrayIndexOutOfBoundsException e)
-		{
-		System.out.print("Plus de place");
-		}
-		return null;
 		
+		return null;
 	}
 
 }
