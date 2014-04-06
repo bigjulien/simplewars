@@ -107,8 +107,7 @@ public class Controlleur {
 	
 	
 	public void prepareDeplacement (Joueur j, Coordonnee c) {
-		memoire = c;
-		deuxiemeClick = true;
+		memoire = c;		
 	}
 	
 	public void partieGagnee(Joueur j) {
@@ -116,6 +115,7 @@ public class Controlleur {
 	}
 	
 	public boolean deplacer (Joueur j, Coordonnee org, Coordonnee dst) {
+		
 		Unite unit = map.getCellule(org).getUnit();
 		
 		// Si il n'y a pas d'unite a deplacer ou que l'unite selectionnee n'appartient pas au joueur
@@ -142,7 +142,7 @@ public class Controlleur {
 		cellDst.setUnit(cellOrg.getUnit());
 		cellOrg.setUnit(null);
 		cellDst.getUnit().setDejaDeplace(true);
-		deuxiemeClick = false;
+		
 		return true;
 	}
 	
@@ -216,13 +216,25 @@ public class Controlleur {
 			// Alors il faudrait que Y1-Y2 soit plus petit que le ddéplacement max. 
 			if(Math.abs(a.getY()-b.getY())<=infos.getMAX_DEPLACEMENT())
 			{
-				/*for(int i=a.getY();i<=a.getY()+infos.getMAX_DEPLACEMENT();i++)
+				/*int i=a.getY();
+				while(i<=a.getY()+infos.getMAX_DEPLACEMENT())
 				{
-					Coordonnee cn=new Coordonnee(a.getX(),i) ;
+					i++;
+					Coordonnee cn=new Coordonnee(a.getX(),i);
+					try
+					{
 					if(!(getCellule(cn).estVideetPrat()))
 					{
+						
+						return false;
+					}			
+					}
+					catch(ArrayIndexOutOfBoundsException np)
+					{
+						
 						return false;
 					}
+					
 				}*/
 				return true;
 			}
@@ -232,17 +244,30 @@ public class Controlleur {
 		{
 			if(Math.abs(a.getX()-b.getX())<=infos.getMAX_DEPLACEMENT())
 			{
-				/*for(int i=a.getX();i<=a.getX()+infos.getMAX_DEPLACEMENT();i++)
+				/*int i = a.getX();
+				while(i<=a.getX()+infos.getMAX_DEPLACEMENT())
 				{
-					Coordonnee cn=new Coordonnee(i,a.getY()) ;
+					i++;
+					Coordonnee cn=new Coordonnee(i,a.getY());	
+					try
+					{
 					if(!(getCellule(cn).estVideetPrat()))
 					{
+						
+						return false;
+					}			
+					}
+					catch(ArrayIndexOutOfBoundsException np)
+					{
+						
 						return false;
 					}
+					
 				}*/
 				return true;
 			}
 		}
+		
 		return false;
 	}
 
@@ -329,8 +354,10 @@ public class Controlleur {
 	}
 	
 	public void click(Coordonnee coordonnee) {
-		Cellule cellule = getCellule(coordonnee);
 		
+		Cellule cellule = getCellule(coordonnee);
+		System.err.println("La cellule contient :"+cellule.contientUnite());
+		System.err.println("C'est le 2ème clique :"+deuxiemeClick);
         // Si on clique sur une cellule qui a un batiment au premier clic
         if(cellule.contientBatiment() && cellule.getBatiment().getJoueur().equals(getJoueurCourant()))
         {
@@ -339,20 +366,24 @@ public class Controlleur {
                 creation();
             }
             unColourAllCorrectCase();
+            
         }
+        
         else if (cellule.contientUnite() && !deuxiemeClick)
-        {
-        	
+        {        	
     		if (cellule.getUnit().isDejaDeplace()) return;
-    	    getRespectfullCases(coordonnee);
-    	    colourAllCorrectCase();
+    		getRespectfullCases(coordonnee);
+    	    colourAllCorrectCase();    	   
     		prepareDeplacement(getJoueurCourant(), coordonnee);
+    		deuxiemeClick = true;
 
     	}
-    	else
+    	else if(!cellule.contientUnite() && deuxiemeClick)
     	{
+    			
     	    unColourAllCorrectCase();
     	    deplacer(getJoueurCourant(), memoire , coordonnee);
+    	    deuxiemeClick = false; 	
     	}
 
 	}

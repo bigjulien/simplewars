@@ -25,7 +25,7 @@ public abstract class Unite {
             bufferedImage = ImageIO.read(new File(path));
             
         } catch (Exception e) {
-            System.out.println("Fichier manquant : " + path);
+            System.err.println("Fichier manquant : " + path);
         }
 	}
 	
