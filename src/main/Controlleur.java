@@ -232,7 +232,7 @@ public class Controlleur {
 					catch(ArrayIndexOutOfBoundsException np)
 					{
 						
-						return false;
+						System.out.println("");
 					}
 					
 				}*/
@@ -259,8 +259,8 @@ public class Controlleur {
 					}
 					catch(ArrayIndexOutOfBoundsException np)
 					{
+						System.out.println("");
 						
-						return false;
 					}
 					
 				}*/
