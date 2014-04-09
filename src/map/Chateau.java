@@ -9,7 +9,7 @@ import joueur.Joueur;
 
 public class Chateau extends Batiment {
 
-	private static String IMAGEPATH = "Units/chateau.png";
+	private static String IMAGEPATH = "Images/Batiment/chateau.png";
 	
 	private boolean produced;
 	

@@ -1,5 +1,7 @@
 package map;
 
+import images.Images;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -104,9 +106,9 @@ public class MapReader {
     public void interpreteMapElement (Cellule[][] grille, String s,int i,int j){
         //System.out.println("une interpretation "+s+" ("+i+","+j+")");
         switch (s){
-        case "0":grille[i][j]= new Cellule(new Coordonnee(i,j),new TerrainPraticable());break;
-        case "1":grille[i][j]= new Cellule(new Coordonnee(i,j),new TerrainImpraticable());break;
-        default : grille[i][j] = new Cellule(new Coordonnee(i,j),new TerrainPraticable());break;
+        case "0":grille[i][j]= new Cellule(new Coordonnee(i,j),new TerrainPraticable(Images.pickATerrainPraticable()));break;
+        case "1":grille[i][j]= new Cellule(new Coordonnee(i,j),new TerrainImpraticable(Images.pickATerrainImpraticable()));break;
+        default : grille[i][j] = new Cellule(new Coordonnee(i,j),new TerrainPraticable(Images.pickATerrainPraticable()));break;
         }
     }
 	

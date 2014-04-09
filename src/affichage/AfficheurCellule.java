@@ -2,8 +2,12 @@ package affichage;
 
 
 
+import images.Images;
+
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -22,7 +26,7 @@ import unit.*;
  * @author Benjamin CLAQUIN
  *
  */
-public class AfficheurCellule extends JPanel implements MouseListener,ColourCaseListener{
+public class AfficheurCellule extends JPanel implements MouseListener,ColourCaseListener,KeyListener{
 
     /**
 	 * 
@@ -33,11 +37,16 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
     Controlleur controlleur;
     private boolean belongToChampDeMovement=false;
     private boolean onOver=false;
-        
+    
+    
+    private boolean displayShape = true;
+    
+    
     private final int BORDERBOLD = 4;
 
     public AfficheurCellule(Cellule cellule) {
         this.addMouseListener(this);
+        this.addKeyListener(this);
         this.cellule=cellule;
         try {
         this.coordonnee=cellule.getCoordonnee();
@@ -85,10 +94,10 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
            
         }
         if(this.belongToChampDeMovement){
-            setImage("Units/selectajaune.png",g);
+            setImage(Images.selecJAUNE,g);
         }
         if(this.onOver){
-            setImage("Units/selecta.png",g);
+            setImage(Images.selecBLEU,g);
         }
         if(cellule.contientBatiment()){
             Batiment u =  cellule.getBatiment();
@@ -105,20 +114,16 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
             
             Unite u = cellule.getUnit();
             if (u.getJoueur().equals(controlleur.getJoueurCourant())){
-                   setImage("Units/selectaalliedi.png",g);
+                   setImage(Images.selecVERT,g);
             }
             else {
-                setImage("Units/selectaennemi.png",g);
+                setImage(Images.selecROUGE,g);
             }
             
-            try {
-                BufferedImage bI=u.getBufferedImage();
-
+                   
+                BufferedImage bI= displayShape? u.getImageForme():u.getBufferedImage();
                 g.drawImage(bI,2*BORDERBOLD,2*BORDERBOLD, getWidth()-4*BORDERBOLD, getHeight()-4*BORDERBOLD,this);
-
-            }catch(Exception e){
-                System.err.println("image unite introuvable");
-            }
+                
         }
     }
     
@@ -134,6 +139,10 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
 	    
 	}
     
+	public void setImage(BufferedImage image,Graphics g){
+	    g.drawImage(image,0,0, getWidth(), getHeight(),this);    
+	}
+	
     public void mouseClicked(MouseEvent arg0) {
     	controlleur.click(coordonnee);
     }
@@ -178,5 +187,22 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
         if (c.equals(this.coordonnee))
             this.belongToChampDeMovement=false;
     }
+
+    @Override
+    public void keyPressed(KeyEvent arg0) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        displayShape=displayShape?false:true;
+        System.out.println("lel");
+    }
+
 
 }

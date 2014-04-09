@@ -10,9 +10,17 @@ public abstract class Terrain {
 	
 	private Color couleur;
 	private boolean praticable;
-	private BufferedImage bufferedImage;
+	protected BufferedImage bufferedImage;
 	
 	
+	
+	   public Terrain (BufferedImage bufferedImage, boolean praticable) {
+	        this.bufferedImage= bufferedImage;
+	        this.praticable = praticable;
+	    }
+	    
+	   
+	   
 	public Terrain (Color couleur, boolean praticable) {
 		this.couleur = couleur;
 		this.praticable = praticable;

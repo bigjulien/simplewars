@@ -1,10 +1,18 @@
 package unit;
 
+import images.Images;
+
+import java.awt.image.BufferedImage;
+
 import joueur.Joueur;
 
 public class Piquier extends Unite{
 
     private static final int NBDEPLACEMENT = 1;
+    
+    private static final BufferedImage ImageGauche = Images.piq_G;
+    private static final BufferedImage ImageDroite = Images.piq_D;
+    private static final BufferedImage ImageForme = Images.piq;
     
     private static final String ABREV = "piq";
     
@@ -28,5 +36,21 @@ public class Piquier extends Unite{
 
     public String getNomAbrev() {
         return ABREV;
+    }
+    
+    @Override
+    public BufferedImage getImageDroite() {
+        return ImageDroite;
+    }
+
+    @Override
+    public BufferedImage getImageGauche() {
+        return ImageGauche;
+    }
+
+    @Override
+    public BufferedImage getImageForme() {
+        // TODO Auto-generated method stub
+        return ImageForme;
     }
 }

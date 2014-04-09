@@ -1,6 +1,7 @@
 package map;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 
 public class TerrainPraticable extends Terrain {
 
@@ -10,6 +11,10 @@ public class TerrainPraticable extends Terrain {
 	private final String pathImage = "Units/snow0.png";
 	public TerrainPraticable(){
         super(PRATICABLE);
+    }
+	
+	public TerrainPraticable (BufferedImage bufferedImage) {
+        super (bufferedImage,PRATICABLE);
     }
 	
 	   public TerrainPraticable(String pathImage){

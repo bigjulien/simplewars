@@ -12,6 +12,7 @@ public abstract class Unite {
 	
 	private Cellule cell;
 	private BufferedImage bufferedImage;
+	private BufferedImage bufferedImageForme;
 	private boolean dejaDeplace;
 	
 	protected Joueur joueur;
@@ -19,17 +20,15 @@ public abstract class Unite {
 	
 	public Unite (Joueur j){
         this.joueur = j;
-        String path = "Units/unit_" + getNomAbrev() + (j.isGauche() ? "G" : "D") + ".png";
-
-        try {
-            bufferedImage = ImageIO.read(new File(path));
-            
-        } catch (Exception e) {
-            System.err.println("Fichier manquant : " + path);
-        }
+        bufferedImageForme=getImageForme();
+        if(j.isGauche())
+            bufferedImage=getImageGauche();
+        else
+            bufferedImage=getImageDroite();
 	}
 	
-	/**
+	
+    /**
 	 * Recupere le nombre de deplacement possible pour le tour actuel
 	 * @return le nombre de deplacement
 	 */
@@ -55,8 +54,11 @@ public abstract class Unite {
         return bufferedImage;
     }
     
-    public abstract String getNomAbrev();
-
+   
+    public abstract BufferedImage getImageDroite();
+    public abstract BufferedImage getImageGauche();
+    public abstract BufferedImage getImageForme();
+    
     public boolean isDejaDeplace() {
         return dejaDeplace;
     }
