@@ -66,7 +66,7 @@ public class PanelInformations extends JPanel implements JoueurChangedListener {
         		aide.setSize(800,1000);
         		JPanel jp = new JPanel();
         		//aide.add()
-        		JLabel image = new JLabel(new ImageIcon("Units/explic.jpg"));
+        		JLabel image = new JLabel(new ImageIcon("Images/Expliquations/explic.jpg"));
         		jp.add(image);
         		aide.add(jp);
         		aide.setVisible(true); 
