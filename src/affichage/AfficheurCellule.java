@@ -37,12 +37,14 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
     Controlleur controlleur;
     private boolean belongToChampDeMovement=false;
     private boolean onOver=false;
+
     
     
     private boolean displayShape = true;
     
     
-    private final int BORDERBOLD = 4;
+   private final int BORDERBOLD = 3;
+
 
     public AfficheurCellule(Cellule cellule) {
         this.addMouseListener(this);
@@ -90,7 +92,7 @@ public class AfficheurCellule extends JPanel implements MouseListener,ColourCase
                 System.err.println("image batiment introuvable");
             }
             
-            setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
+            setBorder(BorderFactory.createLineBorder(Color.BLACK,BORDERBOLD));
            
         }
         if(this.belongToChampDeMovement){

@@ -16,6 +16,12 @@ public class Piquier extends Unite{
     
     private static final String ABREV = "piq";
     
+    private static final String SOUNDSELECTED = "snd/piquier.mp3";
+    
+    public String getSoundSelected() {
+    	return SOUNDSELECTED;
+    }
+    
     public Piquier (Joueur joueur){
         super(joueur);
     }

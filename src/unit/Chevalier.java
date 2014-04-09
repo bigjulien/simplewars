@@ -16,6 +16,12 @@ public class Chevalier extends Unite {
     
     private static final int NBDEPLACEMENT = 2;
     
+    private static final String SOUNDSELECTED = "snd/chevalier.mp3";
+    
+    public String getSoundSelected() {
+    	return SOUNDSELECTED;
+    }
+    
     public Chevalier (Joueur joueur){
         super(joueur);
 
