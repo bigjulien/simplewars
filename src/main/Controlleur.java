@@ -110,9 +110,7 @@ public class Controlleur {
 		memoire = c;		
 	}
 	
-	public void partieGagnee(Joueur j) {
-		JOptionPane jop = new JOptionPane();
-		
+	public void partieGagnee(Joueur j) {	
 		JOptionPane.showMessageDialog(f, "<HTML> <FONT SIZE=200>" + j.getNom() + " gagne !</HTML>", "Gagné" , JOptionPane.INFORMATION_MESSAGE);
 	}
 	
