@@ -111,7 +111,9 @@ public class Controlleur {
 	}
 	
 	public void partieGagnee(Joueur j) {
-		JOptionPane.showMessageDialog(f, "Partie gagnee", "Le joueur " + j.getNom() + " gagne !", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane jop = new JOptionPane();
+		
+		JOptionPane.showMessageDialog(f, "<HTML> <FONT SIZE=200>" + j.getNom() + " gagne !</HTML>", "Gagné" , JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public boolean deplacer (Joueur j, Coordonnee org, Coordonnee dst) {
