@@ -49,7 +49,6 @@ public abstract class Unite {
 	}
 	
 	public static synchronized void playSound(final String url) {
-		System.out.println("play " + url);  
 		new Thread(new Runnable() {
 		  // The wrapper thread is unnecessary, unless it blocks on the
 		  // Clip finishing; see comments.
