@@ -8,6 +8,7 @@ public class Archer extends Unite {
     private static final String ABREV = "arch";
     
     private static final int NBDEPLACEMENT = 1;
+    private static final String SOULDSELECTED = "snd/archer.mp3";
         
     public Archer(Joueur joueur){
         super(joueur);
@@ -31,5 +32,10 @@ public class Archer extends Unite {
     public String getNomAbrev() {
         return ABREV;
     }
+
+	@Override
+	public String getSoundSelected() {
+		return SOULDSELECTED;
+	}
 
 }
