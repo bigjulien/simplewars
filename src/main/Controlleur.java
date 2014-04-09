@@ -115,7 +115,7 @@ public class Controlleur {
 	}
 	
 	public boolean deplacer (Joueur j, Coordonnee org, Coordonnee dst) {
-		
+		System.out.println("Hello");
 		Unite unit = map.getCellule(org).getUnit();
 		
 		// Si il n'y a pas d'unite a deplacer ou que l'unite selectionnee n'appartient pas au joueur
@@ -363,9 +363,9 @@ public class Controlleur {
     		deuxiemeClick = true;
 
     	}
-    	else if(!cellule.contientUnite() && deuxiemeClick)
+    	else if(deuxiemeClick && !(cellule.contientUnite() && cellule.getUnit().getJoueur() == getJoueurCourant()))
     	{
-    			
+    		
     	    unColourAllCorrectCase();
     	    deplacer(getJoueurCourant(), memoire , coordonnee);
     	    deuxiemeClick = false; 	
