@@ -1,7 +1,7 @@
 package gestionnaireInfos;
 
 public class Infos {
-	private final int MAX_DEPLACEMENT = 3;
+	private final int MAX_DEPLACEMENT = 2;
 	
 	private int tour = 0;
 	public int getTour() {
