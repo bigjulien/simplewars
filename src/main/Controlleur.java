@@ -356,8 +356,6 @@ public class Controlleur {
 	public void click(Coordonnee coordonnee) {
 		
 		Cellule cellule = getCellule(coordonnee);
-		System.err.println("La cellule contient :"+cellule.contientUnite());
-		System.err.println("C'est le 2ème clique :"+deuxiemeClick);
         // Si on clique sur une cellule qui a un batiment au premier clic
         if(cellule.contientBatiment() && cellule.getBatiment().getJoueur().equals(getJoueurCourant()))
         {

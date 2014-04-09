@@ -6,7 +6,7 @@ public class TerrainImpraticable extends Terrain {
 	
     private static final Color COULEUR = Color.BLACK;
 	private static final boolean PRATICABLE = false;
-	private final String pathImage="Units/watersand.png";
+	private final String pathImage="Units/water_0.png";
 	public TerrainImpraticable(){
 	    super(PRATICABLE);
 	}
