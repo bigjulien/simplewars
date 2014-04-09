@@ -214,64 +214,51 @@ public class Controlleur {
 		if(a.getX() == b.getX() && a.getY() != b.getY())
 		{
 			// Alors il faudrait que Y1-Y2 soit plus petit que le ddéplacement max. 
-			if(Math.abs(a.getY()-b.getY())<=infos.getMAX_DEPLACEMENT())
+			if(Math.abs(a.getY()-b.getY())<=infos.getMAX_DEPLACEMENT() && pasObstacley(a,b))
 			{
-				/*int i=a.getY();
-				while(i<=a.getY()+infos.getMAX_DEPLACEMENT())
-				{
-					i++;
-					Coordonnee cn=new Coordonnee(a.getX(),i);
-					try
-					{
-					if(!(getCellule(cn).estVideetPrat()))
-					{
-						
-						return false;
-					}			
-					}
-					catch(ArrayIndexOutOfBoundsException np)
-					{
-						
-						System.out.println("");
-					}
-					
-				}*/
 				return true;
 			}
 		}
-		
+		// Si on change en place en X
 		else if(a.getX() != b.getX() && a.getY() == b.getY())
 		{
-			if(Math.abs(a.getX()-b.getX())<=infos.getMAX_DEPLACEMENT())
+			if(Math.abs(a.getX()-b.getX())<=infos.getMAX_DEPLACEMENT() && pasObstaclex(a,b))
 			{
-				/*int i = a.getX();
-				while(i<=a.getX()+infos.getMAX_DEPLACEMENT())
-				{
-					i++;
-					Coordonnee cn=new Coordonnee(i,a.getY());	
-					try
-					{
-					if(!(getCellule(cn).estVideetPrat()))
-					{
-						
-						return false;
-					}			
-					}
-					catch(ArrayIndexOutOfBoundsException np)
-					{
-						System.out.println("");
-						
-					}
-					
-				}*/
 				return true;
 			}
-		}
-		
+		}		
 		return false;
 	}
 
 	
+	private boolean pasObstaclex(Coordonnee a, Coordonnee b) {
+		
+		int j = b.getY(); 
+		for(int i= Math.min(a.getX(),b.getX());i<= Math.max(a.getX(),b.getX());i++)
+		{
+			if(!map.getGrille()[i][j].getTerrain().isPraticable())
+			{
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	private boolean pasObstacley(Coordonnee a, Coordonnee b)
+	{
+		int i = a.getX();
+		for(int j= Math.min(a.getY(),b.getY());j<= Math.max(a.getY(),b.getY());j++)
+		{
+			if(!map.getGrille()[i][j].getTerrain().isPraticable())
+			{
+				return false;
+			}
+		}
+		
+		return true;
+	}
+
 	/**
 	 * Fonction permettant de recuperer toutes les coordonnes de la grille accessible a partir d'une coordonne, pour un deplacement simple
 	 * 
