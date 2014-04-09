@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 
 import javazoom.jl.player.Player;
 import joueur.Joueur;
+import main.Main;
 import map.Cellule;
 
 public abstract class Unite {
@@ -38,26 +39,8 @@ public abstract class Unite {
 	public void playSoundSelected() {
 		System.out.println("exist : " + new File(getSoundSelected()).exists());
 		System.out.println(getSoundSelected());
-		playSound(getSoundSelected());
+		Main.playSound(getSoundSelected());
 	}
-	
-	public static synchronized void playSound(final String url) {
-		new Thread(new Runnable() {
-		  // The wrapper thread is unnecessary, unless it blocks on the
-		  // Clip finishing; see comments.
-		    public void run() {
-		    	try{
-		    	    FileInputStream fis = new FileInputStream(url);
-		    	    Player playMP3 = new Player(fis);
-		    	    playMP3.play();
-		    	}
-		    	catch(Exception exc){
-		    	    exc.printStackTrace();
-		    	    System.out.println("Failed to play the file.");
-		    	}
-		    }
-		  }).start();
-		}
 	
 	/**
 	 * Renvoie la cellule de l'unite

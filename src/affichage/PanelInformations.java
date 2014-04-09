@@ -15,6 +15,7 @@ import joueur.Joueur;
 import event.JoueurChangedEvent;
 import event.JoueurChangedListener;
 import main.Controlleur;
+import main.Main;
 
 /**
  * Panel comportant les informations de jeu tel que le joueur actuel etc...
@@ -27,6 +28,9 @@ public class PanelInformations extends JPanel implements JoueurChangedListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private static final String PATHAIDE = "snd/aide.mp3";
+	
 	private JButton tourSuivant,aide;
     private JLabel joueurActuel;
     private Dimension dimension = new Dimension(300,300);
@@ -46,7 +50,7 @@ public class PanelInformations extends JPanel implements JoueurChangedListener {
             }
 
 			private void aide() {
-				
+				Main.playSound(PATHAIDE);
 				
 				aide.setVisible(true);
 				
