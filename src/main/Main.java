@@ -18,28 +18,52 @@ import affichage.PanelInformations;
 public class Main {
     private static final String CONFIGPATH = "Map0";
     
-    
-public static void playSound(final String url) {
-    new Thread(new Runnable() {
-      // The wrapper thread is unnecessary, unless it blocks on the
-      // Clip finishing; see comments.
-        public void run() {
-            try{
-                FileInputStream fis = new FileInputStream(url);
-                Player playMP3 = new Player(fis);
-                playMP3.play();
+    private static final String MUSIQUE = "snd/musique.mp3";
+        
+    public static void playSound(final String url) {
+        new Thread(new Runnable() {
+          // The wrapper thread is unnecessary, unless it blocks on the
+          // Clip finishing; see comments.
+            public void run() {
+                try{
+                    FileInputStream fis = new FileInputStream(url);
+                    Player playMP3 = new Player(fis);
+                    playMP3.play();
+                }
+                catch(Exception exc){
+                    exc.printStackTrace();
+                    System.out.println("Failed to play the file.");
+                }
             }
-            catch(Exception exc){
-                exc.printStackTrace();
-                System.out.println("Failed to play the file.");
-            }
-        }
         }).start();
     }
     
+    public static void musiqueAmbiante() {
+        new Thread(new Runnable() {
+              public void run() {
+                  try{
+                      while (true) {
+                          FileInputStream fis = new FileInputStream(MUSIQUE);
+                          Player playMP3 = new Player(fis);
+                          playMP3.play();
+                      }
+        }
+        catch(Exception exc){
+            exc.printStackTrace();
+             System.out.println("Failed to play the file.");
+
+        }
+        }
+        }).start();
+
+}
+
+    
 	public static void main(String[] args)
 	{
-		MapReader mapReader = new MapReader();
+	    boolean musique = true;
+
+	    MapReader mapReader = new MapReader();
 		Map map = mapReader.readMap(CONFIGPATH);
 		
 		PanelCarte panelCarte = new PanelCarte(map);
@@ -48,8 +72,12 @@ public static void playSound(final String url) {
 	    Frame frame = new Frame(map, panelCarte, panelInfo);
 	    
 	    Controlleur c = new Controlleur(map, frame, panelInfo);
-	    	    
+	    
 	    panelCarte.setControl(c);
 	    panelInfo.setControl(c);
+	    
+	    if (musique) {
+	        musiqueAmbiante();
+	    }
 	}
 }
